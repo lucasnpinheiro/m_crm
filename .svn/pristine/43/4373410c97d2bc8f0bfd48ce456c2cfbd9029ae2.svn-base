@@ -1,0 +1,77 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+Version: 0.1 :D!!
+More info: http://jquerymobile.com/demos/1.1.0/docs/about/getting-started.html
+-->
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>CRM Mobile</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile-1.3.0.min.css" />
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile.structure-1.3.0.min.css" />
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile.theme-1.3.0.min.css" />
+        <script src="/crm_mobile/js/jquery.js"></script>
+        <script src="/crm_mobile/js/jquery.mobile-1.3.0.min.js"></script>
+    </head> 
+    <body> 
+
+        <div data-url="panel-fixed-page1"  class="ui-responsive-panel" id="panel-fixed-page1" data-role="page">
+
+            <div data-role="header" data-position="fixed">
+                <a href="#nav-panel" data-theme="d" data-icon="bars" data-iconpos="notext">Menu</a>
+                <h1>CRM Mobile</h1>
+                <span style="display: inline-block; font-size: 85%; position: absolute; right: 20px; top: 15px;">Usuário: Lucas_p</span>
+            </div><!-- /header -->
+
+            <div data-role="content" class="conteudo">
+
+                <div class="ui-grid-a" style="text-align: center;">
+                    <div class="ui-block-a" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Novo Pedido</a>
+                    </div>
+                    <div class="ui-block-b" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Consultar Pedido</a>
+                    </div>
+                    <div class="ui-block-a" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Consultar Clientes</a>
+                    </div>
+                    <div class="ui-block-b" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Consultar Produtos</a>
+                    </div>
+                    <div class="ui-block-a" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Sincrinização</a>
+                    </div>
+                    <div class="ui-block-b" style="min-height: 50px; line-height: 50px;">
+                        <a href="#panel-fixed-page2" class="ui-bar ui-bar-d">Sair</a>
+                    </div>
+                </div><!-- /grid-a -->
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed">
+                <h1>CRM Mobile Versão 1.0.0 - 2013 - Todos os direitos reservados</h1>
+            </div><!-- /header -->
+
+
+
+            <div data-role="panel" data-position-fixed="true" data-theme="c" id="nav-panel">
+                <ul data-role="listview" data-theme="c" class="nav-search">
+                    <li data-theme="a" >Menu</li>
+                    <li><a href="#panel-fixed-page2">Novo Pedido</a></li>
+                    <li><a href="#panel-fixed-page2">Consultar Pedido</a></li>
+                    <li><a href="#panel-fixed-page2">Consultar Clientes</a></li>
+                    <li><a href="#panel-fixed-page2">Consultar Produtos</a></li>
+                    <li><a href="#panel-fixed-page2">Sincrinização</a></li>
+                    <li><a href="#panel-fixed-page2">Sair</a></li>
+                </ul>
+            </div><!-- /panel -->
+
+        </div><!-- /page -->
+
+    </body>
+</html>
+
+

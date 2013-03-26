@@ -1,0 +1,52 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+Version: 0.1 :D!!
+More info: http://jquerymobile.com/demos/1.1.0/docs/about/getting-started.html
+-->
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>CRM Mobile</title> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile-1.3.0.min.css" />
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile.structure-1.3.0.min.css" />
+        <link rel="stylesheet" href="/crm_mobile/css/jquery.mobile.theme-1.3.0.min.css" />
+        <script src="/crm_mobile/js/jquery.js"></script>
+        <script src="/crm_mobile/js/jquery.mobile-1.3.0.min.js"></script>
+    </head> 
+    <body> 
+
+        <div data-role="page">
+
+            <div data-role="header" data-position="fixed">
+                <h1>CRM Mobile</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="/crm_mobile/index.html">Início</a></li>
+                        <li><a href="/crm_mobile/views/produtos/lista.html">Configurações</a></li>
+                        <li><a href="/crm_mobile/views/clientes/lista.html">Anotações</a></li>
+                        <li><a href="/crm_mobile/views/atualizacoes/lista.html">Sair</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+
+            <div data-role="content" class="conteudo">
+                <p>Lista de pedidos</p>
+            </div><!-- /content -->
+
+            <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="/crm_mobile/views/pedidos/lista.html">Pedidos</a></li>
+                        <li><a href="/crm_mobile/views/produtos/lista.html">Produtos</a></li>
+                        <li><a href="/crm_mobile/views/clientes/lista.html">Clientes</a></li>
+                        <li><a href="/crm_mobile/views/atualizacoes/lista.html">Atualizações</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+    </body>
+</html>

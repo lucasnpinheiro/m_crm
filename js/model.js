@@ -5,9 +5,16 @@ if ( window.openDatabase ) {
     // conexão
     var db = window.openDatabase("crm_mobile", "", "CRM MOBILE", 5 * 1000 * 1000);
 
-    /*if(window.location.href == base_url){
+    if($.cookie('crm_mobile_reset_banco') != 'S'){
         verificar_tabelas();
-    }*/
+        $.cookie('crm_mobile_reset_banco', 'S', {
+            expires : 3600
+        });
+    } else {
+        $.cookie('crm_mobile_reset_banco', 'N', {
+            expires : 3600
+        });
+    }
 	
     $(document).ready(function() {
 

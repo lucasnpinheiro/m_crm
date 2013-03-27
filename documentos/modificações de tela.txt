@@ -1,0 +1,26 @@
+http://m.crm.s2i.com.br/prototipos/
+
+
+na tela de pedido_1 incluir campo de pesquisa do cliente, caso o vendedor não souber o codigo do cliente
+   R: Deve ser Auto Complete no Cliente e trazer dados se código encontrado
+na tela de pedido_2 vai ser autocomplete o codigo do produto com pesquisa do nome do produto, ou var ser uma tela de pesquisa a parte para adicionar ou pedido.
+   R: Deve ser Auto Complete no Produto e trazer dados se código encontrado 
+na tela pedido_3 faltou o botão de adicionar quantidade de parcelas no pagamento.
+   R:Ok, faltou
+na tela de pedido_4 faltou o campo observação.
+R:Ok, faltou
+na tela de detalhes do pedido faltou o campo observação
+   R:Ok, faltou 
+não foi localizado a tela de primeiro acesso (validação de instalação).
+ R:Ok, faltou
+no menu faltou o botões "sair" e "informação sobre o cliente autoriaxo pelo uso", com opção de reinicializar o aplicativo para nova instalação.
+o que significa o botão "H" no topo.
+ R: Home
+todos os status de todas as tela podem ser icones, no lugar de texto.
+ R: Pode
+faltou a tela de boletos atrazados no inicio do pedido.
+    R:Ok, faltou
+a tela de pedido_1 pode iniciar o pedido através da tela de consulta de clientes, e nela ter o botão " "novo pedido", "cobranças atrazadas", "pedidos" ".
+    R: Neste caso pderia ter duas formas, pois na pedido_1 eu faço uma consulta. Na consulta poderia ter um atalho
+não fica melhor fazer um sistema de pedido no formato e-commerce, aonde eu seleciono um cliente, e depois vou navegando nos produtos e clicando um botão de "adicionar ao pedido", como complemento.
+   R: Acho mto longe da realiadade deles, sem contar que para usuários inexperiêntes pode ficar meio confuso.

@@ -1,3 +1,11 @@
+body{
+    font-size: 16px;
+}
+
+.ui-footer .ui-title {
+    font-size: 0.7em;
+}
+
 .ui-header .ui-title{
     text-align: left;
     margin: .6em 0em .8em;
@@ -22,8 +30,9 @@
     display: inline-block;
     font-size: 85%;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 5px;
+    top: 28px;  
+    font-size: 0.7em;
 }
 
 .ui-content{

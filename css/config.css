@@ -54,3 +54,7 @@ body{
 .crm_list_view_links_add > a{
     display: inline-block;
 }
+
+table{
+    width: 100%;
+}

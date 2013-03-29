@@ -26,6 +26,7 @@ body{
     font-size: 14px;
 }
 
+.crm_mobile_versao,
 .crm_mobile_atutenticacao{
     display: inline-block;
     font-size: 85%;

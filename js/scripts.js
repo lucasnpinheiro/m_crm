@@ -22,11 +22,11 @@ function md5(str) {
         lX4 = (lX & 0x40000000);
         lY4 = (lY & 0x40000000);
         lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
-        if ( lX4 & lY4 ) {
+        if (lX4 & lY4) {
             return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
         }
-        if ( lX4 | lY4 ) {
-            if ( lResult & 0x40000000 ) {
+        if (lX4 | lY4) {
+            if (lResult & 0x40000000) {
                 return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
             } else {
                 return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
@@ -78,7 +78,7 @@ function md5(str) {
         var lWordArray = new Array(lNumberOfWords - 1);
         var lBytePosition = 0;
         var lByteCount = 0;
-        while ( lByteCount < lMessageLength ) {
+        while (lByteCount < lMessageLength) {
             lWordCount = (lByteCount - (lByteCount % 4)) / 4;
             lBytePosition = (lByteCount % 4) * 8;
             lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount) << lBytePosition));
@@ -94,9 +94,9 @@ function md5(str) {
 
     var wordToHex = function(lValue) {
         var wordToHexValue = "",
-        wordToHexValue_temp = "",
-        lByte, lCount;
-        for ( lCount = 0; lCount <= 3; lCount++ ) {
+                wordToHexValue_temp = "",
+                lByte, lCount;
+        for (lCount = 0; lCount <= 3; lCount++) {
             lByte = (lValue >>> (lCount * 8)) & 255;
             wordToHexValue_temp = "0" + lByte.toString(16);
             wordToHexValue = wordToHexValue + wordToHexValue_temp.substr(wordToHexValue_temp.length - 2, 2);
@@ -104,23 +104,23 @@ function md5(str) {
         return wordToHexValue;
     };
 
-    var x = [ ],
-    k, AA, BB, CC, DD, a, b, c, d, S11 = 7,
-    S12 = 12,
-    S13 = 17,
-    S14 = 22,
-    S21 = 5,
-    S22 = 9,
-    S23 = 14,
-    S24 = 20,
-    S31 = 4,
-    S32 = 11,
-    S33 = 16,
-    S34 = 23,
-    S41 = 6,
-    S42 = 10,
-    S43 = 15,
-    S44 = 21;
+    var x = [],
+            k, AA, BB, CC, DD, a, b, c, d, S11 = 7,
+            S12 = 12,
+            S13 = 17,
+            S14 = 22,
+            S21 = 5,
+            S22 = 9,
+            S23 = 14,
+            S24 = 20,
+            S31 = 4,
+            S32 = 11,
+            S33 = 16,
+            S34 = 23,
+            S41 = 6,
+            S42 = 10,
+            S43 = 15,
+            S44 = 21;
 
     str = this.utf8_encode(str);
     x = convertToWordArray(str);
@@ -130,7 +130,7 @@ function md5(str) {
     d = 0x10325476;
 
     xl = x.length;
-    for ( k = 0; k < xl; k += 16 ) {
+    for (k = 0; k < xl; k += 16) {
         AA = a;
         BB = b;
         CC = c;
@@ -227,51 +227,51 @@ function utf8_encode(argString) {
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    if ( argString === null || typeof argString === "undefined" ) {
+    if (argString === null || typeof argString === "undefined") {
         return "";
     }
 
     var string = (argString + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
     var utftext = '',
-    start, end, stringl = 0;
+            start, end, stringl = 0;
 
     start = end = 0;
     stringl = string.length;
-    for ( var n = 0; n < stringl; n++ ) {
+    for (var n = 0; n < stringl; n++) {
         var c1 = string.charCodeAt(n);
         var enc = null;
 
-        if ( c1 < 128 ) {
+        if (c1 < 128) {
             end++;
-        } else if ( c1 > 127 && c1 < 2048 ) {
+        } else if (c1 > 127 && c1 < 2048) {
             enc = String.fromCharCode(
-                (c1 >> 6) | 192,
-                (c1 & 63) | 128
-                );
-        } else if ( c1 & 0xF800 != 0xD800 ) {
+                    (c1 >> 6) | 192,
+                    (c1 & 63) | 128
+                    );
+        } else if (c1 & 0xF800 != 0xD800) {
             enc = String.fromCharCode(
-                (c1 >> 12) | 224,
-                ((c1 >> 6) & 63) | 128,
-                (c1 & 63) | 128
-                );
+                    (c1 >> 12) | 224,
+                    ((c1 >> 6) & 63) | 128,
+                    (c1 & 63) | 128
+                    );
         } else { // surrogate pairs
-            if ( c1 & 0xFC00 != 0xD800 ) {
+            if (c1 & 0xFC00 != 0xD800) {
                 throw new RangeError("Unmatched trail surrogate at " + n);
             }
             var c2 = string.charCodeAt(++n);
-            if ( c2 & 0xFC00 != 0xDC00 ) {
+            if (c2 & 0xFC00 != 0xDC00) {
                 throw new RangeError("Unmatched lead surrogate at " + (n - 1));
             }
             c1 = ((c1 & 0x3FF) << 10) + (c2 & 0x3FF) + 0x10000;
             enc = String.fromCharCode(
-                (c1 >> 18) | 240,
-                ((c1 >> 12) & 63) | 128,
-                ((c1 >> 6) & 63) | 128,
-                (c1 & 63) | 128
-                );
+                    (c1 >> 18) | 240,
+                    ((c1 >> 12) & 63) | 128,
+                    ((c1 >> 6) & 63) | 128,
+                    (c1 & 63) | 128
+                    );
         }
-        if ( enc !== null ) {
-            if ( end > start ) {
+        if (enc !== null) {
+            if (end > start) {
                 utftext += string.slice(start, end);
             }
             utftext += enc;
@@ -279,7 +279,7 @@ function utf8_encode(argString) {
         }
     }
 
-    if ( end > start ) {
+    if (end > start) {
         utftext += string.slice(start, stringl);
     }
 
@@ -302,26 +302,26 @@ function utf8_decode(str_data) {
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    var tmp_arr = [ ],
-    i = 0,
-    ac = 0,
-    c1 = 0,
-    c2 = 0,
-    c3 = 0,
-    c4 = 0;
+    var tmp_arr = [],
+            i = 0,
+            ac = 0,
+            c1 = 0,
+            c2 = 0,
+            c3 = 0,
+            c4 = 0;
 
     str_data += '';
 
-    while ( i < str_data.length ) {
+    while (i < str_data.length) {
         c1 = str_data.charCodeAt(i);
-        if ( c1 <= 191 ) {
+        if (c1 <= 191) {
             tmp_arr[ac++] = String.fromCharCode(c1);
             i++;
-        } else if ( c1 <= 223 ) {
+        } else if (c1 <= 223) {
             c2 = str_data.charCodeAt(i + 1);
             tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
             i += 2;
-        } else if ( c1 <= 239 ) {
+        } else if (c1 <= 239) {
             // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
             c2 = str_data.charCodeAt(i + 1);
             c3 = str_data.charCodeAt(i + 2);
@@ -351,9 +351,9 @@ function utf8_decode(str_data) {
  * Released under the MIT license
  */
 (function(factory) {
-    if ( typeof define === 'function' && define.amd ) {
+    if (typeof define === 'function' && define.amd) {
         // AMD. Register as anonymous module.
-        define([ 'jquery' ], factory);
+        define(['jquery'], factory);
     } else {
         // Browser globals.
         factory(jQuery);
@@ -371,23 +371,23 @@ function utf8_decode(str_data) {
     }
 
     function converted(s) {
-        if ( s.indexOf('"') === 0 ) {
+        if (s.indexOf('"') === 0) {
             // This is a quoted cookie as according to RFC2068, unescape
             s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
         }
         try {
             return config.json ? JSON.parse(s) : s;
-        } catch ( er ) {
+        } catch (er) {
         }
     }
 
     var config = $.cookie = function(key, value, options) {
 
         // write
-        if ( value !== undefined ) {
-            options = $.extend({ }, config.defaults, options);
+        if (value !== undefined) {
+            options = $.extend({}, config.defaults, options);
 
-            if ( typeof options.expires === 'number' ) {
+            if (typeof options.expires === 'number') {
                 var days = options.expires, t = options.expires = new Date();
                 t.setDate(t.getDate() + days);
             }
@@ -402,24 +402,24 @@ function utf8_decode(str_data) {
                 options.path ? '; path=' + options.path : '',
                 options.domain ? '; domain=' + options.domain : '',
                 options.secure ? '; secure' : ''
-                ].join(''));
+            ].join(''));
         }
 
         // read
         var decode = config.raw ? raw : decoded;
         var cookies = document.cookie.split('; ');
-        var result = key ? undefined : { };
-        for ( var i = 0, l = cookies.length; i < l; i++ ) {
+        var result = key ? undefined : {};
+        for (var i = 0, l = cookies.length; i < l; i++) {
             var parts = cookies[i].split('=');
             var name = decode(parts.shift());
             var cookie = decode(parts.join('='));
 
-            if ( key && key === name ) {
+            if (key && key === name) {
                 result = converted(cookie);
                 break;
             }
 
-            if ( !key ) {
+            if (!key) {
                 result[name] = converted(cookie);
             }
         }
@@ -427,12 +427,12 @@ function utf8_decode(str_data) {
         return result;
     };
 
-    config.defaults = { };
+    config.defaults = {};
 
     $.removeCookie = function(key, options) {
-        if ( $.cookie(key) !== undefined ) {
+        if ($.cookie(key) !== undefined) {
             $.cookie(key, '', $.extend(options, {
-                expires : -1
+                expires: -1
             }));
             return true;
         }
@@ -441,8 +441,90 @@ function utf8_decode(str_data) {
 
 }));
 
+/**
+ * _session
+ *
+ * Init time Branching ou Ramificação em tempo de inicialização
+ *
+ **/
 
-function date (format, timestamp) {
+/**
+ Definição de meu Objeto Literal com seus atributos "get" e "set"
+ por enquanto sem nenhum ação.
+ **/
+var _session = {
+    get: function(key) {
+        // Checa pela presença do localStorage para armazenagem de dados
+        if (typeof localStorage === 'object') {
+            return localStorage.getItem(key);
+        } else {
+            return $.cookie(key);
+        }
+    },
+    set: function(key, value) {
+        // Checa pela presença do localStorage para armazenagem de dados
+        if (typeof localStorage === 'object') {
+            localStorage.setItem(key, value);
+        } else {
+            var d = new Date();
+            d.setDate(exdate.getDate() + 1);
+            $.cookie(key, value, {
+                expires: d.toUTCString()
+            });
+        }
+    },
+    remove: function(key) {
+        if (typeof localStorage === 'object') {
+            localStorage.removeItem(key);
+        } else {
+            $.removeCookie(key)
+        }
+    }
+};
+
+//
+// Use internal $.serializeArray to get list of form elements which is
+// consistent with $.serialize
+//
+// From version 2.0.0, $.serializeObject will stop converting [name] values
+// to camelCase format. This is *consistent* with other serialize methods:
+//
+//   - $.serialize
+//   - $.serializeArray
+//
+// If you require camel casing, you can either download version 1.0.4 or map
+// them yourself.
+//
+$.fn.serializeObject = function() {
+    "use strict";
+
+    var result = {};
+    var extend = function(i, element) {
+        var node = result[element.name];
+
+        // If node with same name exists already, need to convert it to an array as it
+        // is a multi-value field (i.e., checkboxes)
+
+        if ('undefined' !== typeof node && node !== null) {
+            if ($.isArray(node)) {
+                node.push(element.value);
+            } else {
+                result[element.name] = [node, element.value];
+            }
+        } else {
+            result[element.name] = element.value;
+        }
+    };
+
+    // For each serialzable element, convert element names to camelCasing and
+    // extend each of them to a JSON object
+
+    $.each(this.serializeArray(), extend);
+    return result;
+};
+
+
+function date(format, timestamp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
@@ -501,211 +583,384 @@ function date (format, timestamp) {
     // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
     // *     returns 9: '52 2011-01-02'
     var that = this,
-    jsdate,
-    f,
-    formatChr = /\\?([a-z])/gi,
-    formatChrCb,
-    // Keep this here (works, but for code commented-out
-    // below for file size reasons)
-    //, tal= [],
-    _pad = function (n, c) {
+            jsdate,
+            f,
+            formatChr = /\\?([a-z])/gi,
+            formatChrCb,
+            // Keep this here (works, but for code commented-out
+            // below for file size reasons)
+            //, tal= [],
+            _pad = function(n, c) {
         n = n.toString();
         return n.length < c ? _pad('0' + n, c, '0') : n;
     },
-    txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    formatChrCb = function (t, s) {
+            txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    formatChrCb = function(t, s) {
         return f[t] ? f[t]() : s;
     };
     f = {
         // Day
-        d: function () { // Day of month w/leading 0; 01..31
+        d: function() { // Day of month w/leading 0; 01..31
             return _pad(f.j(), 2);
         },
-        D: function () { // Shorthand day name; Mon...Sun
+        D: function() { // Shorthand day name; Mon...Sun
             return f.l().slice(0, 3);
         },
-        j: function () { // Day of month; 1..31
+        j: function() { // Day of month; 1..31
             return jsdate.getDate();
         },
-        l: function () { // Full day name; Monday...Sunday
+        l: function() { // Full day name; Monday...Sunday
             return txt_words[f.w()] + 'day';
         },
-        N: function () { // ISO-8601 day of week; 1[Mon]..7[Sun]
+        N: function() { // ISO-8601 day of week; 1[Mon]..7[Sun]
             return f.w() || 7;
         },
-        S: function(){ // Ordinal suffix for day of month; st, nd, rd, th
+        S: function() { // Ordinal suffix for day of month; st, nd, rd, th
             var j = f.j()
-            i = j%10;
-            if (i <= 3 && parseInt((j%100)/10) == 1) i = 0;
+            i = j % 10;
+            if (i <= 3 && parseInt((j % 100) / 10) == 1)
+                i = 0;
             return ['st', 'nd', 'rd'][i - 1] || 'th';
         },
-        w: function () { // Day of week; 0[Sun]..6[Sat]
+        w: function() { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
         },
-        z: function () { // Day of year; 0..365
+        z: function() { // Day of year; 0..365
             var a = new Date(f.Y(), f.n() - 1, f.j()),
-            b = new Date(f.Y(), 0, 1);
+                    b = new Date(f.Y(), 0, 1);
             return Math.round((a - b) / 864e5);
         },
-
         // Week
-        W: function () { // ISO-8601 week number
+        W: function() { // ISO-8601 week number
             var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
-            b = new Date(a.getFullYear(), 0, 4);
+                    b = new Date(a.getFullYear(), 0, 4);
             return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
         },
-
         // Month
-        F: function () { // Full month name; January...December
+        F: function() { // Full month name; January...December
             return txt_words[6 + f.n()];
         },
-        m: function () { // Month w/leading 0; 01...12
+        m: function() { // Month w/leading 0; 01...12
             return _pad(f.n(), 2);
         },
-        M: function () { // Shorthand month name; Jan...Dec
+        M: function() { // Shorthand month name; Jan...Dec
             return f.F().slice(0, 3);
         },
-        n: function () { // Month; 1...12
+        n: function() { // Month; 1...12
             return jsdate.getMonth() + 1;
         },
-        t: function () { // Days in month; 28...31
+        t: function() { // Days in month; 28...31
             return (new Date(f.Y(), f.n(), 0)).getDate();
         },
-
         // Year
-        L: function () { // Is leap year?; 0 or 1
+        L: function() { // Is leap year?; 0 or 1
             var j = f.Y();
             return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0;
         },
-        o: function () { // ISO-8601 year
+        o: function() { // ISO-8601 year
             var n = f.n(),
-            W = f.W(),
-            Y = f.Y();
+                    W = f.W(),
+                    Y = f.Y();
             return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0);
         },
-        Y: function () { // Full year; e.g. 1980...2010
+        Y: function() { // Full year; e.g. 1980...2010
             return jsdate.getFullYear();
         },
-        y: function () { // Last two digits of year; 00...99
+        y: function() { // Last two digits of year; 00...99
             return f.Y().toString().slice(-2);
         },
-
         // Time
-        a: function () { // am or pm
+        a: function() { // am or pm
             return jsdate.getHours() > 11 ? "pm" : "am";
         },
-        A: function () { // AM or PM
+        A: function() { // AM or PM
             return f.a().toUpperCase();
         },
-        B: function () { // Swatch Internet time; 000..999
+        B: function() { // Swatch Internet time; 000..999
             var H = jsdate.getUTCHours() * 36e2,
-            // Hours
-            i = jsdate.getUTCMinutes() * 60,
-            // Minutes
-            s = jsdate.getUTCSeconds(); // Seconds
+                    // Hours
+                    i = jsdate.getUTCMinutes() * 60,
+                    // Minutes
+                    s = jsdate.getUTCSeconds(); // Seconds
             return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
         },
-        g: function () { // 12-Hours; 1..12
+        g: function() { // 12-Hours; 1..12
             return f.G() % 12 || 12;
         },
-        G: function () { // 24-Hours; 0..23
+        G: function() { // 24-Hours; 0..23
             return jsdate.getHours();
         },
-        h: function () { // 12-Hours w/leading 0; 01..12
+        h: function() { // 12-Hours w/leading 0; 01..12
             return _pad(f.g(), 2);
         },
-        H: function () { // 24-Hours w/leading 0; 00..23
+        H: function() { // 24-Hours w/leading 0; 00..23
             return _pad(f.G(), 2);
         },
-        i: function () { // Minutes w/leading 0; 00..59
+        i: function() { // Minutes w/leading 0; 00..59
             return _pad(jsdate.getMinutes(), 2);
         },
-        s: function () { // Seconds w/leading 0; 00..59
+        s: function() { // Seconds w/leading 0; 00..59
             return _pad(jsdate.getSeconds(), 2);
         },
-        u: function () { // Microseconds; 000000-999000
+        u: function() { // Microseconds; 000000-999000
             return _pad(jsdate.getMilliseconds() * 1000, 6);
         },
-
         // Timezone
-        e: function () { // Timezone identifier; e.g. Atlantic/Azores, ...
+        e: function() { // Timezone identifier; e.g. Atlantic/Azores, ...
             // The following works, but requires inclusion of the very large
             // timezone_abbreviations_list() function.
             /*              return that.date_default_timezone_get();
-*/
+             */
             throw 'Not supported (see source code of date() for timezone on how to add support)';
         },
-        I: function () { // DST observed?; 0 or 1
+        I: function() { // DST observed?; 0 or 1
             // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
             // If they are not equal, then DST is observed.
             var a = new Date(f.Y(), 0),
-            // Jan 1
-            c = Date.UTC(f.Y(), 0),
-            // Jan 1 UTC
-            b = new Date(f.Y(), 6),
-            // Jul 1
-            d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+                    // Jan 1
+                    c = Date.UTC(f.Y(), 0),
+                    // Jan 1 UTC
+                    b = new Date(f.Y(), 6),
+                    // Jul 1
+                    d = Date.UTC(f.Y(), 6); // Jul 1 UTC
             return ((a - c) !== (b - d)) ? 1 : 0;
         },
-        O: function () { // Difference to GMT in hour format; e.g. +0200
+        O: function() { // Difference to GMT in hour format; e.g. +0200
             var tzo = jsdate.getTimezoneOffset(),
-            a = Math.abs(tzo);
+                    a = Math.abs(tzo);
             return (tzo > 0 ? "-" : "+") + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
         },
-        P: function () { // Difference to GMT w/colon; e.g. +02:00
+        P: function() { // Difference to GMT w/colon; e.g. +02:00
             var O = f.O();
             return (O.substr(0, 3) + ":" + O.substr(3, 2));
         },
-        T: function () { // Timezone abbreviation; e.g. EST, MDT, ...
+        T: function() { // Timezone abbreviation; e.g. EST, MDT, ...
             // The following works, but requires inclusion of the very
             // large timezone_abbreviations_list() function.
             /*              var abbr = '', i = 0, os = 0, default = 0;
-      if (!tal.length) {
-        tal = that.timezone_abbreviations_list();
-      }
-      if (that.php_js && that.php_js.default_timezone) {
-        default = that.php_js.default_timezone;
-        for (abbr in tal) {
-          for (i=0; i < tal[abbr].length; i++) {
-            if (tal[abbr][i].timezone_id === default) {
-              return abbr.toUpperCase();
-            }
-          }
-        }
-      }
-      for (abbr in tal) {
-        for (i = 0; i < tal[abbr].length; i++) {
-          os = -jsdate.getTimezoneOffset() * 60;
-          if (tal[abbr][i].offset === os) {
-            return abbr.toUpperCase();
-          }
-        }
-      }
-*/
+             if (!tal.length) {
+             tal = that.timezone_abbreviations_list();
+             }
+             if (that.php_js && that.php_js.default_timezone) {
+             default = that.php_js.default_timezone;
+             for (abbr in tal) {
+             for (i=0; i < tal[abbr].length; i++) {
+             if (tal[abbr][i].timezone_id === default) {
+             return abbr.toUpperCase();
+             }
+             }
+             }
+             }
+             for (abbr in tal) {
+             for (i = 0; i < tal[abbr].length; i++) {
+             os = -jsdate.getTimezoneOffset() * 60;
+             if (tal[abbr][i].offset === os) {
+             return abbr.toUpperCase();
+             }
+             }
+             }
+             */
             return 'UTC';
         },
-        Z: function () { // Timezone offset in seconds (-43200...50400)
+        Z: function() { // Timezone offset in seconds (-43200...50400)
             return -jsdate.getTimezoneOffset() * 60;
         },
-
         // Full Date/Time
-        c: function () { // ISO-8601 date.
+        c: function() { // ISO-8601 date.
             return 'Y-m-d\\TH:i:sP'.replace(formatChr, formatChrCb);
         },
-        r: function () { // RFC 2822
+        r: function() { // RFC 2822
             return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);
         },
-        U: function () { // Seconds since UNIX epoch
+        U: function() { // Seconds since UNIX epoch
             return jsdate / 1000 | 0;
         }
     };
-    this.date = function (format, timestamp) {
+    this.date = function(format, timestamp) {
         that = this;
         jsdate = (timestamp === undefined ? new Date() : // Not provided
-            (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-            new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-            );
+                (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
+                new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+                );
         return format.replace(formatChr, formatChrCb);
     };
     return this.date(format, timestamp);
+}
+
+
+/**
+ * @author Kyle Florence <kyle[dot]florence[at]gmail[dot]com>
+ * @website https://github.com/kflorence/jquery-deserialize/
+ * @version 1.2.1
+ *
+ * Dual licensed under the MIT and GPLv2 licenses.
+ */
+(function(jQuery, undefined) {
+
+    var push = Array.prototype.push,
+            rcheck = /^(?:radio|checkbox)$/i,
+            rplus = /\+/g,
+            rselect = /^(?:option|select-one|select-multiple)$/i,
+            rvalue = /^(?:button|color|date|datetime|datetime-local|email|hidden|month|number|password|range|reset|search|submit|tel|text|textarea|time|url|week)$/i;
+
+    function getElements(elements) {
+        return elements.map(function() {
+            return this.elements ? jQuery.makeArray(this.elements) : this;
+        }).filter(":input").get();
+    }
+
+    function getElementsByName(elements) {
+        var current,
+                elementsByName = {};
+
+        jQuery.each(elements, function(i, element) {
+            current = elementsByName[ element.name ];
+            elementsByName[ element.name ] = current === undefined ? element :
+                    (jQuery.isArray(current) ? current.concat(element) : [current, element]);
+        });
+
+        return elementsByName;
+    }
+
+    jQuery.fn.deserialize = function(data, options) {
+        var i, length,
+                elements = getElements(this),
+                normalized = [];
+
+        if (!data || !elements.length) {
+            return this;
+        }
+
+        if (jQuery.isArray(data)) {
+            normalized = data;
+
+        } else if (jQuery.isPlainObject(data)) {
+            var key, value;
+
+            for (key in data) {
+                jQuery.isArray(value = data[ key ]) ?
+                        push.apply(normalized, jQuery.map(value, function(v) {
+                    return {
+                        name: key,
+                        value: v
+                    };
+                })) : push.call(normalized, {
+                    name: key,
+                    value: value
+                });
+            }
+
+        } else if (typeof data === "string") {
+            var parts;
+
+            data = data.split("&");
+
+            for (i = 0, length = data.length; i < length; i++) {
+                parts = data[ i ].split("=");
+                push.call(normalized, {
+                    name: decodeURIComponent(parts[ 0 ]),
+                    value: decodeURIComponent(parts[ 1 ].replace(rplus, "%20"))
+                });
+            }
+        }
+
+        if (!(length = normalized.length)) {
+            return this;
+        }
+
+        var current, element, j, len, name, property, type, value,
+                change = jQuery.noop,
+                complete = jQuery.noop,
+                names = {};
+
+        options = options || {};
+        elements = getElementsByName(elements);
+
+        // Backwards compatible with old arguments: data, callback
+        if (jQuery.isFunction(options)) {
+            complete = options;
+
+        } else {
+            change = jQuery.isFunction(options.change) ? options.change : change;
+            complete = jQuery.isFunction(options.complete) ? options.complete : complete;
+        }
+
+        for (i = 0; i < length; i++) {
+            current = normalized[ i ];
+
+            name = current.name;
+            value = current.value;
+
+            if (!(element = elements[ name ])) {
+                continue;
+            }
+
+            type = (len = element.length) ? element[ 0 ] : element;
+            type = (type.type || type.nodeName).toLowerCase();
+            property = null;
+
+            if (rvalue.test(type)) {
+                if (len) {
+                    j = names[ name ];
+                    element = element[ names[ name ] = (j == undefined) ? 0 : ++j ];
+                }
+
+                change.call(element, (element.value = value));
+
+            } else if (rcheck.test(type)) {
+                property = "checked";
+
+            } else if (rselect.test(type)) {
+                property = "selected";
+            }
+
+            if (property) {
+                if (!len) {
+                    element = [element];
+                    len = 1;
+                }
+
+                for (j = 0; j < len; j++) {
+                    current = element[ j ];
+
+                    if (current.value == value) {
+                        change.call(current, (current[ property ] = true) && value);
+                    }
+                }
+            }
+        }
+
+        complete.call(this);
+
+        return this;
+    };
+
+})(jQuery);
+
+function jAviso(msg) {
+    $.pnotify({
+        title: 'CRM Mobile Informa:',
+        text: msg,
+        hide: false,
+        sticker: false,
+        history: false,
+        icon: false,
+        styling: 'jqueryui'
+    });
+}
+
+function jSucesso(msg) {
+    $.pnotify({
+        title: 'CRM Mobile Informa:',
+        text: msg,
+        hide: false,
+        sticker: false,
+        history: false,
+        icon: false,
+        styling: 'jqueryui'
+    });
+}
+
+function debug(tipo, msg) {
+    console.log(date('Y-m-d H:i:s', (new Date()).getTime() / 1000) + "\n" + ' Mesagem: "' + msg + '" ' + "\n\n\n");
 }

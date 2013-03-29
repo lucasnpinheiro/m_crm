@@ -43,3 +43,13 @@ body{
     -webkit-border-radius: 0;
     border-radius:0;
 }
+
+.crm_list_view_links_add{
+    float: right;
+    position: absolute;
+    top: 17px;
+    right: 32px;
+}
+.crm_list_view_links_add > a{
+    display: inline-block;
+}

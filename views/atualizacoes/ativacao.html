@@ -1,0 +1,56 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CRM Mobile</title> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../css/jquery-ui-1.10.2.custom.min.css" />
+        <link rel="stylesheet" href="../../css/jquery.mobile-1.3.0.min.css" />
+        <link rel="stylesheet" href="../../css/jquery.pnotify.default.css" />
+        <link rel="stylesheet" href="../../css/jquery.pnotify.default.icons.css" />
+        <link rel="stylesheet" href="../../css/config.css" />
+        <script src="../../js/jquery.js"></script>
+        <script src="../../js/jquery-ui-1.10.2.custom.min.js"></script>
+        <script src="../../js/jquery.mobile-1.3.0.min.js"></script>
+        <script src="../../js/jquery.pnotify.js"></script>
+        <script src="../../js/configs.js"></script>
+        <script src="../../js/scripts.js"></script>
+        <script src="../../js/model.js"></script>
+    </head>
+    <body>
+        <div data-url="ativacao"  class="ui-responsive-panel" id="panel-fixed-page1" data-role="page">
+
+            <div data-role="header" data-position="fixed">
+                <h1><image src="../../images/logo.png" title="S2I" /> Pedidos Mobile</h1>
+                <span class="crm_mobile_atutenticacao"></span>
+            </div><!-- /header -->
+
+            <div data-role="content" class="conteudo">
+
+                <ul data-role="listview" data-inset="true" data-divider-theme="d" class="crm_mobile_menu">
+                    <li data-role="list-divider">Ativação do Sistema</li>
+                </ul>
+
+                <p>Bem vindo a ativação do S2I Mobile. Entre com os dados abaixo para desfrutar das facilidades.</p>
+
+                <form name="frm_ativacao" id="frm_ativacao">
+                    <label for="codigo_cliente">Código Cliente</label>
+                    <input type="text" name="codigo_cliente" id="codigo_cliente" value="">
+
+                    <label for="codigo_ativacao">Código de Ativação do Sistema</label>
+                    <input type="text" name="codigo_ativacao" id="codigo_ativacao" value="">
+                </form>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed">
+                <h1>CRM Mobile Versão 1.0.0 - 2013 - Todos os direitos reservados</h1>
+            </div><!-- /header -->
+
+        </div><!-- /page -->
+    </body>
+</html>

@@ -21,12 +21,7 @@ var _constant = {
         erro: 'CRM Mobile error:',
         sucesso: 'CRM Mobile informa:'
     },
-    base_url: function(url) {
-        url = (!url ? url : '')
-        var base_url = window.location.protocol + rtrim(window.location.hostname, '/') + '/';
-        return  base_url + url;
-    },
     redirect: function(url) {
-        window.location.href = _constant.base_url(url);
+        window.location.href = url;
     }
 };

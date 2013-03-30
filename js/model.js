@@ -25,10 +25,8 @@ if (window.openDatabase) {
                     debug('TOTAL', result.rows.length);
                     if (result.rows.length != 0) {
                         debug('SUSSESO', 'ID Usuário: ' + result.rows.item(0).id_usuarios);
-                        $.each(result.rows.item, function(a, b) {
-                            alert(a + ' == ' + b);
-                            _session.set('usuario', result.rows.item(0).usuario);
-                        });
+                        _session.set('id_usuarios', result.rows.item(0).id_usuarios);
+                        _session.set('usuario', result.rows.item(0).usuario);
                         _constant.redirect('views/painel.html');
                     } else {
                         jAviso('Usuário e/ou senha invalidos.');

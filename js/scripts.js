@@ -1148,6 +1148,9 @@ var _valida = {
                 if ( $(this).attr("disabled") ) {
                     $(this).addClass("textoDisabled");
                 }
+                if ( $(this).attr("required") ) {
+                    $(this).addClass("obrigatorio");
+                }
                 if ( $(this).hasClass("obrigatorio") ) {
                     $(this).removeAttr("title");
                     $(this).attr("required", "required");

@@ -52,6 +52,11 @@ body{
 
 table{
     width: 100%;
+    font-size: 0.8em;
+}
+
+input.obrigatorio{
+    border-left: 2px solid orangered;
 }
 
 .situacoes_clientes_1{color: blue;}

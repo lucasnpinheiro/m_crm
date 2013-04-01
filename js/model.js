@@ -46,7 +46,7 @@ if (window.openDatabase) {
             _session.remove('reset_banco');
             _session.remove('usuario');
             _session.remove('id_usuario');
-            _constant.redirect();
+            _constant.redirect('index.html');
         });
     });
 

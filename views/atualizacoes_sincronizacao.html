@@ -1,0 +1,61 @@
+
+<div data-url="sincronizacao"  class="ui-responsive-panel" id="produtos" data-role="page">
+
+    <div data-role="header" data-position="fixed">
+        <h1><image src="../images/logo.png" title="S2I" /> Pedidos Mobile</h1>
+        <a href="painel.html" data-icon="home" class="ui-btn-right">Home</a>
+    </div><!-- /header -->
+
+    <div data-role="content" class="conteudo">
+
+        <ul data-role="listview" data-inset="true" data-divider-theme="d" data-corners="false">
+            <li data-role="list-divider">Sincronização de Tabelas</li>
+        </ul>
+
+        <table data-role="table" id="table-clientes" data-mode="reflow" class="ui-responsive table-stroke">
+            <thead>
+                <tr class="ui-bar-a">
+                    <th title="Produto">Tabela</th>
+                    <th data-priority="1" title="Atualização">Atualização</th>
+                    <th data-priority="2" title="Total sincronizado">Total sincronizado</th>
+                    <th data-priority="3" title="Total registro">Total registro</th>
+                    <th data-priority="4" title="Situação">Situação</th>
+                    <th data-priority="5" title="Ações">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Produtos</th>
+                    <td>29/03/2013 15:11:35</td>
+                    <td>25</td>
+                    <td>30</td>
+                    <td><span class="situacoes_sincronizacao_4">Sincronizando</span></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>Clientes</th>
+                    <td>29/03/2013 15:11:35</td>
+                    <td>80</td>
+                    <td>80</td>
+                    <td><span class="situacoes_sincronizacao_1">Sincronizado</span></td>
+                    <td>&nbsp;</td>
+                </tr><tr>
+                    <th>Usuários</th>
+                    <td>29/03/2013 15:11:35</td>
+                    <td>2</td>
+                    <td>30</td>
+                    <td><span class="situacoes_sincronizacao_2">Error</span></td>
+                    <td><a href="#" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Sincronizar</a></td>
+                </tr><tr>
+                    <th>Pedidos</th>
+                    <td>29/03/2013 15:11:35</td>
+                    <td>0</td>
+                    <td>30</td>
+                    <td><span class="situacoes_sincronizacao_3">Não sincronizado</span></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- /content -->
+
+</div><!-- /page -->

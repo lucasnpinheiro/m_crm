@@ -1,27 +1,34 @@
 
-        <div data-url="ativacao"  class="ui-responsive-panel" id="ativacao" data-role="page">
+<div data-url="ativacao"  class="ui-responsive-panel" id="ativacao" data-role="page">
 
-            <div data-role="header" data-position="fixed">
-                <h1><image src="../images/logo.png" title="S2I" /> Pedidos Mobile</h1>
-                <a href="painel.html" data-icon="home" class="ui-btn-right">Home</a>
-            </div><!-- /header -->
+    <div data-role="header" data-position="fixed">
+        <h1><image src="../images/logo.png" title="S2I" /> Pedidos Mobile</h1>
+        <a href="painel.html" data-icon="home" class="ui-btn-right">Home</a>
+    </div><!-- /header -->
 
-            <div data-role="content" class="conteudo">
-
-                <ul data-role="listview" data-inset="true" data-divider-theme="d" class="crm_mobile_menu">
-                    <li data-role="list-divider">Ativação do Sistema</li>
-                </ul>
-
-                <p>Bem vindo a ativação do S2I Mobile. Entre com os dados abaixo para desfrutar das facilidades.</p>
-
-                <form name="frm_ativacao" id="frm_ativacao">
+    <div data-role="content" class="conteudo">
+        <form name="frm_login" id="frm_login" data-corners="false">
+            <ul data-role="listview" data-inset="true" data-divider-theme="d"  data-corners="false">
+                <li data-role="list-divider">Ativação do Sistema</li>
+                <li>Bem vindo a ativação do S2I Mobile. Entre com os dados abaixo para desfrutar das facilidades.</li>
+                <li data-role="fieldcontain">
                     <label for="codigo_cliente">Código Cliente</label>
                     <input type="text" name="codigo_cliente" id="codigo_cliente" value="">
-
+                </li>
+                <li data-role="fieldcontain">
                     <label for="codigo_ativacao">Código de Ativação do Sistema</label>
                     <input type="text" name="codigo_ativacao" id="codigo_ativacao" value="">
-                </form>
+                </li>
 
-            </div><!-- /content -->
+                <li class="ui-body ui-body-b">
+                    <fieldset>
+                        <div class="ui-block-b">
+                            <button type="submit" data-theme="b">Ativar</button>
+                        </div>
+                    </fieldset>
+                </li>
+            </ul>
+        </form>
+    </div><!-- /content -->
 
-        </div><!-- /page -->
+</div><!-- /page -->

@@ -7,7 +7,7 @@
 
             <div data-role="content" class="conteudo">
 
-                <ul data-role="listview" data-inset="true" data-divider-theme="d" class="crm_mobile_menu">
+                <ul data-role="listview" data-inset="true" data-divider-theme="d" data-corners="false">
                     <li data-role="list-divider">Consulta de Clientes</li>
                 </ul>
 
@@ -17,20 +17,20 @@
                 <table data-role="table" id="table-clientes" data-mode="reflow" class="ui-responsive table-stroke">
                     <thead>
                         <tr class="ui-bar-a">
-                            <th>Cliente</th>
-                            <th data-priority="1">Código</th>
-                            <th data-priority="2">Valores Pendentes</th>
-                            <th data-priority="3">Situação</th>
-                            <th data-priority="4">Última Atualização</th>
-                            <th data-priority="5">Ações</th>
+                            <th title="Cliente">Cliente</th>
+                            <th data-priority="1" title="Código">Cód.</th>
+                            <th data-priority="2" title="Valores Pendentes">V. Pendentes</th>
+                            <th data-priority="3" title="Situação">Situação</th>
+                            <th data-priority="4" title="Aultima Atualizazção">Atualização</th>
+                            <th data-priority="5" title="Ações">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Cliente A</td>
+                            <th>Cliente A</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -38,10 +38,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente B</td>
+                            <th>Cliente B</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -49,10 +49,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente C</td>
+                            <th>Cliente C</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -60,10 +60,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente D</td>
+                            <th>Cliente D</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_2">Inativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -71,10 +71,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente E</td>
+                            <th>Cliente E</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_3">Bloqueado</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -82,10 +82,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente F</td>
+                            <th>Cliente F</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -93,10 +93,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente G</td>
+                            <th>Cliente G</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_4">Bloqueado Pagamento</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -104,10 +104,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente H</td>
+                            <th>Cliente H</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_5">Cancelado</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -115,10 +115,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente I</td>
+                            <th>Cliente I</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -126,10 +126,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente J</td>
+                            <th>Cliente J</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -137,10 +137,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente K</td>
+                            <th>Cliente K</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>
@@ -148,10 +148,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Cliente L</td>
+                            <th>Cliente L</th>
                             <td>123</td>
                             <td>R$ 300,00</td>
-                            <td>Ativo</td>
+                            <td><span class="situacoes_clientes_1">Ativo</span></td>
                             <td>29/03/2013 15:11:35</td>
                             <td>
                                 <a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">Detalhes</a>

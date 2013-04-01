@@ -40,11 +40,6 @@ body{
     padding: 0;
 }
 
-.ui-listview.ui-corner-all {
-    -webkit-border-radius: 0;
-    border-radius:0;
-}
-
 .crm_list_view_links_add{
     float: right;
     position: absolute;
@@ -58,3 +53,20 @@ body{
 table{
     width: 100%;
 }
+
+.situacoes_clientes_1{color: blue;}
+.situacoes_clientes_2{color: red;}
+.situacoes_clientes_3{color: orange;}
+.situacoes_clientes_4{color: orangered;}
+.situacoes_clientes_5{color: black;}
+
+.situacoes_sincronizacao_1{color: blue;}
+.situacoes_sincronizacao_2{color: red;}
+.situacoes_sincronizacao_3{color: orange;}
+.situacoes_sincronizacao_4{color: green;}
+.situacoes_sincronizacao_5{color: black;}
+
+.situacoes_produtos_1{color: blue;}
+.situacoes_produtos_2{color: red;}
+.situacoes_produtos_3{color: green;}
+.situacoes_produtos_4{color: orangered;}

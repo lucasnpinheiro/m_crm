@@ -13,6 +13,15 @@ function rtrim(str, charlist) {
     return (str + '').replace(re, '');
 }
 
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
+
 var _constant = {
     version: 1,
     vrprefix: 'crm_mobile_',
@@ -25,3 +34,26 @@ var _constant = {
         window.location.href = url;
     }
 };
+
+var _situacoes = {
+    clientes: {
+        1: 'Ativo',
+        2: 'Inativo',
+        3: 'Bloqueado',
+        4: 'Bloqueado pagamento',
+        5: 'Cancelado'
+    },
+    sincronizacao: {
+        1: 'Sincronizado',
+        2: 'Error',
+        3: 'Não sincronizado',
+        4: 'Sincronizando',
+        5: 'Cancelado'
+    },
+    produtos: {
+        A: '<span class="situacoes_protutos_1">{0}</span>',
+        B: '<span class="situacoes_protutos_2">{0}</span>',
+        min: '<span class="situacoes_protutos_3">{0}</span>',
+        max: '<span class="situacoes_protutos_4">{0}</span>',
+    }
+}

@@ -55,10 +55,6 @@ table{
     font-size: 0.8em;
 }
 
-.ui-table-reflow.ui-responsive{
-    display: none;
-}
-
 .ui-input-text.obrigatorio{
     border-left: 2px solid orangered;
 }

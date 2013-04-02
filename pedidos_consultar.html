@@ -1,5 +1,5 @@
 
-<div data-url="consulta_pedidos"  class="ui-responsive-panel" id="produtos" data-role="page">
+<div data-url="consulta_pedidos"  class="ui-responsive-panel" id="consulta_pedidos" data-role="page">
 
     <div data-role="header" data-position="fixed">
         <h1><image src="images/logo.png" title="S2I" /> Pedidos Mobile</h1>
@@ -12,34 +12,35 @@
             <li data-role="list-divider">Consulta de Pedidos</li>
         </ul>
 
-        <div class="ui-grid-a">
-            <div class="ui-block-a">
-                <input type="text" name="codigo_pedido" id="codigo_pedido" value="" placeholder="Código do pedido">
+        <form>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <input type="text" name="codigo_pedido" id="codigo_pedido" value="" placeholder="Código do pedido">
+                </div>
+                <div class="ui-block-b">
+                    <input type="text" name="cliente" id="cliente" value="" placeholder="Cliente">
+                </div>
             </div>
-            <div class="ui-block-b">
-                <input type="text" name="cliente" id="cliente" value="" placeholder="Cliente">
-            </div>
-        </div>
-        
-        <div class="ui-grid-c">
-            <div class="ui-block-a">
-                <input type="date" name="data" id="data" value="" placeholder="Data" class="data">
-            </div>
-            <div class="ui-block-c">
-                <select name="situacao_envio" id="situacao_envio" data-native-menu="true">
-                    <option>Envio situação</option>
-                </select>
-            </div>
-            <div class="ui-block-c">
-                <select name="situacao_pedido" id="situacao_pedido" data-native-menu="true">
-                    <option>Pedido situação</option>
-                </select>
-            </div>
-            <div class="ui-block-d">
-                <a href="#" data-role="button" data-iconpos="notext" data-theme="c" data-inline="true" data-icon="search">Consultar</a>
-            </div>
-        </div>
 
+            <div class="ui-grid-c">
+                <div class="ui-block-a">
+                    <input type="text" name="data" id="data" value="" placeholder="Data" class="data">
+                </div>
+                <div class="ui-block-c">
+                    <select name="situacao_envio" id="situacao_envio" data-native-menu="true">
+                        <option>Envio situação</option>
+                    </select>
+                </div>
+                <div class="ui-block-c">
+                    <select name="situacao_pedido" id="situacao_pedido" data-native-menu="true">
+                        <option>Pedido situação</option>
+                    </select>
+                </div>
+                <div class="ui-block-d">
+                    <a href="#" data-role="button" data-iconpos="notext" data-theme="c" data-inline="true" data-icon="search">Consultar</a>
+                </div>
+            </div>
+        </form>
         <table data-role="table" id="table-consulta-pedidos" data-mode="reflow" class="ui-responsive table-stroke">
             <thead>
                 <tr class="ui-bar-a">

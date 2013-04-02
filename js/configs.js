@@ -82,6 +82,7 @@ $(document).on('pageinit', function() {
         $('#situacao_pedido').append('<option value="' + a + '">' + b + '</option>');
     });
     $('form').insere_mascara();
+    getDeviceInfo();
 });
 
 // handling document ready and phonegap deviceready

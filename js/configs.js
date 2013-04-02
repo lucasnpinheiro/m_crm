@@ -96,12 +96,8 @@ function onDeviceReady() {
 
 // get device info
 function getDeviceInfo() {
-    $.each(device,function(a,b){
-        alert(a + ' === '+ b);
-    });
-//    $('#devName').text(device.name);
-//    $('#devPlatform').text(device.platform);
-//    $('#devUUID').text(device.uuid);
-//    $('#devVersion').text(device.version);
-    $('#devPhonegap').text(device.phonegap);
+    $('#devName').text(device.name);
+    $('#devPlatform').text(device.platform);
+    $('#devUUID').text(device.uuid);
+    $('#devVersion').text(device.version);
 }

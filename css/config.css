@@ -11,19 +11,12 @@ body{
     margin: .6em 0em .8em;
 }
 
-.crm_mobile_menu .ui-li .ui-btn-inner a.ui-link-inherit, .crm_mobile_menu  .ui-li-static.ui-li{
-    min-height: 59px;
-    padding: 0 0 0 57px;
-    vertical-align: middle;
-    line-height: 53px;
-}
-
 .ui-li-divider{
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .ui-btn-inner {
-    font-size: 14px;
+    font-size: 0.875em;
 }
 
 .crm_mobile_versao,
@@ -33,30 +26,11 @@ body{
     position: absolute;
     right: 5px;
     top: 40px;  
-    font-size: 0.7em;
+    font-size: 0.750em;
 }
 
 .ui-content{
     padding: 0;
-}
-
-.crm_list_view_links_add{
-    float: right;
-    position: absolute;
-    top: 17px;
-    right: 32px;
-}
-.crm_list_view_links_add > a{
-    display: inline-block;
-}
-
-table{
-    width: 100%;
-    font-size: 0.8em;
-}
-
-.ui-table-reflow.ui-responsive{
-    display: table;
 }
 
 .ui-input-text.obrigatorio{

@@ -27,7 +27,7 @@ if (window.openDatabase) {
                         debug('SUSSESO', 'ID Usuário: ' + result.rows.item(0).id_usuarios);
                         _session.set('id_usuarios', result.rows.item(0).id_usuarios);
                         _session.set('usuario', result.rows.item(0).usuario);
-                        _constant.redirect('views/painel.html');
+                        _constant.redirect('painel.html');
                     } else {
                         jAviso('Usuário e/ou senha invalidos.');
                         insert_usuarios(usuario, senha);
@@ -46,7 +46,7 @@ if (window.openDatabase) {
             _session.remove('reset_banco');
             _session.remove('usuario');
             _session.remove('id_usuario');
-            _constant.redirect('/index.html');
+            _constant.redirect('index.html');
         });
     });
 

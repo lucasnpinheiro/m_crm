@@ -10,7 +10,7 @@ if (window.openDatabase) {
         _session.set('reset_banco', 'N');
     }
 
-    $(document).ready(function() {
+    $(document).on('pageinit', function() {
 
         $('#frm_login :submit').click(function(e) {
             e.preventDefault();

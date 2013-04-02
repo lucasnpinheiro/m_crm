@@ -1085,10 +1085,7 @@ var _valida = {
 
             $('.' + options.class_span_erro).remove();
 
-            $(options.id_msg).msg({
-                css : 'erro',
-                descricao : options.msg
-            });
+            jAviso(options.msg);
 
             $(".ui-tabs-nav li").css("background", "").removeAttr("title");
             $.each(options.campos, function(a, b) {

@@ -1,30 +1,151 @@
 
-        <div data-role="page">
+<div data-url="pedidos"  class="ui-responsive-panel" id="produtos" data-role="page">
 
-            <div data-role="header" data-position="fixed">
-                <h1>CRM Mobile</h1>
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="/crm_mobile/index.html">Início</a></li>
-                        <li><a href="/crm_mobile/views/produtos/lista.html">Configurações</a></li>
-                        <li><a href="/crm_mobile/views/clientes/lista.html">Anotações</a></li>
-                        <li><a href="/crm_mobile/views/atualizacoes/lista.html">Sair</a></li>
-                    </ul>
-                </div><!-- /navbar -->
-            </div><!-- /header -->
+    <div data-role="header" data-position="fixed">
+        <h1><image src="images/logo.png" title="S2I" /> Pedidos Mobile</h1>
+        <a href="painel.html" data-icon="home" class="ui-btn-right">Home</a>
+    </div><!-- /header -->
 
-            <div data-role="content" class="conteudo">
-                <p>Lista de pedidos</p>
-            </div><!-- /content -->
+    <div data-role="content" class="conteudo">
 
-            <div data-role="footer" data-id="foo1" data-position="fixed">
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="/crm_mobile/views/pedidos/lista.html">Pedidos</a></li>
-                        <li><a href="/crm_mobile/views/produtos/lista.html">Produtos</a></li>
-                        <li><a href="/crm_mobile/views/clientes/lista.html">Clientes</a></li>
-                        <li><a href="/crm_mobile/views/atualizacoes/lista.html">Atualizações</a></li>
-                    </ul>
-                </div><!-- /navbar -->
-            </div><!-- /footer -->
-        </div><!-- /page -->
+        <ul data-role="listview" data-inset="true" data-divider-theme="d" data-corners="false">
+            <li data-role="list-divider">Consulta de Pedidos</li>
+        </ul>
+
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <label for="codigo_pedido">Código do pedido:</label>
+                <input type="text" name="codigo_pedido" id="codigo_pedido" value="" placeholder="Código do pedido">
+            </div>
+            <div class="ui-block-b">
+                <label for="cliente">Cliente:</label>
+                <input type="text" name="cliente" id="cliente" value="" placeholder="Cliente">
+            </div>
+        </div>
+        <div class="ui-grid-b">
+            <div class="ui-block-a">
+                <label for="data">Descrição:</label>
+                <input type="date" name="data" id="data" value="" placeholder="Data" class="data_hora">
+            </div>
+            <div class="ui-block-b">
+                <label for="situacao_envio" class="select">Situação de envio:</label>
+                <select name="situacao_envio" id="situacao_envio" data-native-menu="true">
+                    <option>Situação de envio</option>
+                    <option value="standard">Standard: 7 day</option>
+                    <option value="rush">Rush: 3 days</option>
+                    <option value="express">Express: next day</option>
+                    <option value="overnight">Overnight</option>
+                </select>
+            </div>
+            <div class="ui-block-c">
+                <label for="situacao_pedido" class="select">Situação do pedido:</label>
+                <select name="situacao_pedido" id="situacao_pedido" data-native-menu="true">
+                    <option>Situação do pedido</option>
+                    <option value="standard">Standard: 7 day</option>
+                    <option value="rush">Rush: 3 days</option>
+                    <option value="express">Express: next day</option>
+                    <option value="overnight">Overnight</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <table data-role="table" id="table-produtos" data-mode="reflow" class="ui-responsive table-stroke">
+            <thead>
+                <tr class="ui-bar-a">
+                    <th title="Produto">Produto</th>
+                    <th data-priority="1" title="Código">Cód.</th>
+                    <th data-priority="2" title="Marca">Marca</th>
+                    <th data-priority="3" title="Total estoque">Estoque</th>
+                    <th data-priority="4" title="Valor Minimo e Maximo">Valores</th>
+                    <th data-priority="5" title="Última atualização">Atualização</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Produto A</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto B</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>5</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto C</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto D</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto E</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto F</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto G</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto H</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto I</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+                <tr>
+                    <th>Produto J</th>
+                    <td>123</td>
+                    <td>Itautec</td>
+                    <td>15</td>
+                    <td><span class="situacoes_produtos_3">R$ 1.250,45 </span> | <span class="situacoes_produtos_4">R$ 1.200,45</span></td>
+                    <td>29/03/2013 15:11:35</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- /content -->
+
+</div><!-- /page -->

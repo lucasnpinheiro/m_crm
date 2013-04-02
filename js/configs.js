@@ -82,7 +82,7 @@ $(document).on('pageinit', function() {
         $('#situacao_pedido').append('<option value="' + a + '">' + b + '</option>');
     });
     $('form').insere_mascara();
-    getDeviceInfo();
+    document.addEventListener('deviceready', onDeviceReady, false);
 });
 
 // handling document ready and phonegap deviceready

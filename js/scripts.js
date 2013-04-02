@@ -1154,6 +1154,7 @@ var _valida = {
                 if ( $(this).hasClass("obrigatorio") ) {
                     $(this).removeAttr("title");
                     $(this).attr("required", "required");
+                    $(this).parent().addClass("obrigatorio");
                 }
                 if ( $(this).hasClass("data") ) {
                     $(this).mask("?99/99/9999").datepicker({

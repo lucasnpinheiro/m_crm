@@ -55,8 +55,11 @@ table{
     font-size: 0.8em;
 }
 
-input.obrigatorio{
+.ui-input-text.obrigatorio{
     border-left: 2px solid orangered;
+}
+input.obrigatorio{
+    border-left: none;
 }
 
 .situacoes_clientes_1{color: blue;}

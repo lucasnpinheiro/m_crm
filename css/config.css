@@ -56,7 +56,7 @@ table{
 }
 
 .ui-table-reflow.ui-responsive{
-    display: table;
+    display: none;
 }
 
 .ui-input-text.obrigatorio{

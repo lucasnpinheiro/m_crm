@@ -886,11 +886,6 @@ var _valida = {
             var options = $.extend(true, defaults, parametros);
             $(this).attr("onsubmit", "return false;");
             $.each($(this).find(":input").not(':button'), function() {
-                $(this).unmask();
-                $(this).maskMoney('destroy');
-                /*if ($(this).hasClass("textoDisabled")) {
-                 $(this).removeAttr("title").removeClass("obrigatorio");
-                 }*/
                 if ($(this).attr("disabled")) {
                     $(this).addClass("textoDisabled");
                 }
@@ -903,101 +898,50 @@ var _valida = {
                     $(this).parent().addClass("obrigatorio");
                 }
                 if ($(this).hasClass("data")) {
-                    $(this).mask("?99/99/9999").attr("title", "Informe uma Data").attr("size", "12").attr("maxlength", "10");
+                    //type="tel"  placeholder="999-999-9999"  pattern="\d{3}[-\s]\d{3}[-\s]\d{4}.*?$"
+                    $(this).attr({
+                        "pattern": "\d{2}[/\s]\d{2}[/\s]\d{4}.*?$",
+                        "type": "date",
+                        "title": "Informe uma Data",
+                        "size": "12",
+                        "maxlength": "10"
+                    });
                 }
                 if ($(this).hasClass("mes_data")) {
-                    $(this).mask("?99/9999").attr("title", "Informe uma Mês e Ano").attr("size", "9").attr("maxlength", "7");
+                    $(this).attr("title", "Informe uma Mês e Ano").attr("size", "9").attr("maxlength", "7");
                 }
                 if ($(this).hasClass("email")) {
                     $(this).attr("title", "Informe um E-mail.").attr("maxlength", "255").css('width', '90%');
                 }
                 if ($(this).hasClass("hora")) {
-                    $(this).attr("title", "Informe uma Hora.").mask("?99:99").attr("size", "7").attr("maxlength", "5");
+                    $(this).attr("title", "Informe uma Hora.").attr("size", "7").attr("maxlength", "5");
                 }
                 if ($(this).hasClass("hora_segundos")) {
-                    $(this).mask("?99:99:99").attr("title", "Informe uma Hora.").attr("size", "10").attr("maxlength", "8");
+                    $(this).attr("title", "Informe uma Hora.").attr("size", "10").attr("maxlength", "8");
                 }
                 if ($(this).hasClass("cpf")) {
-                    $(this).mask("?999.999.999-99").attr("title", "Informe um CPF.").attr("size", "16").attr("maxlength", "14");
-                }
-                if ($(this).hasClass("cpf_cnpj")) {
-                    $(this).mask("?99.999.999/9999-99").on("focusout", function(event) {
-                        var target, phone, element;
-                        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-                        phone = target.value.replace(/\D/g, "");
-                        element = $(target);
-                        element.unmask();
-                        if (phone.length > 11) {
-                            element.attr("title", "Informe um CNPJ.").attr("size", "20").attr("maxlength", "18").mask("?99.999.999/9999-99");
-                        } else {
-                            element.mask("?999.999.999-99").attr("title", "Informe um CPF.").attr("size", "16").attr("maxlength", "14");
-                        }
-                    });
-                }
-
-                if ($(this).hasClass("telefone")) {
-                    $(this).mask("?(99) 9999-99999").on("focusout", function(event) {
-                        var target, phone, element;
-                        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-                        phone = target.value.replace(/\D/g, "");
-                        element = $(target);
-                        element.unmask();
-                        if (phone.substr(0, 2) == '11') {
-                            element.mask("?(99) 99999-9999");
-                        } else {
-                            element.mask("?(99) 9999-9999");
-                        }
-                    }).attr("title", "Informe um Telefone com DDD.").attr("size", "16").attr("maxlength", "14");
+                    $(this).attr("title", "Informe um CPF.").attr("size", "16").attr("maxlength", "14");
                 }
                 if ($(this).hasClass("cnpj")) {
-                    $(this).mask("?99.999.999/9999-99").attr("title", "Informe um CNPJ.").attr("size", "20").attr("maxlength", "18");
+                    $(this).attr("title", "Informe um CNPJ.").attr("size", "20").attr("maxlength", "18");
                 }
                 if ($(this).hasClass("numero")) {
-                    var qtd = $(this).attr('maxlength');
-                    if (!qtd) {
-                        $(this).mask(options.numero.mascara, {
-                            placeholder: ""
-                        });
-                    } else {
-                        var masc = '?';
-                        for (var i = 0; i < parseInt(qtd); i++) {
-                            masc += '9';
-                        }
-                        $(this).mask(masc, {
-                            placeholder: ""
-                        });
-                    }
                     $(this).attr("title", "Informe o número.");
                     $(this).attr("size", (!$(this).attr('size') || $(this).attr('size') == '' ? options.numero.size : $(this).attr('size')));
                     $(this).attr("maxlength", (!$(this).attr('maxlength') || $(this).attr('maxlength') == '' ? options.numero.maxlength : $(this).attr('maxlength')));
                 }
                 if ($(this).hasClass("alfa")) {
-                    $(this).mask(options.alfa.mascara, {
-                        placeholder: ""
-                    });
                     $(this).attr("title", options.alfa.titulo);
                     $(this).attr("size", options.alfa.size);
                     $(this).attr("maxlength", options.alfa.maxlength);
                 }
                 if ($(this).hasClass("peso")) {
-                    $(this).maskMoney({
-                        allowNegative: true,
-                        precision: 3
-                    });
                     $(this).attr("title", "Informe o peso.");
                 }
                 if ($(this).hasClass("altura_largura")) {
-                    $(this).maskMoney({
-                        allowNegative: true,
-                        precision: 2
-                    });
                     $(this).attr("title", "Informe a (altura/largura).");
                 }
                 if ($(this).hasClass("moeda")) {
-                    $(this).maskMoney({
-                        allowNegative: true,
-                        precision: 2
-                    });
                     $(this).attr("title", "Informe valor Monetário.");
                 }
 

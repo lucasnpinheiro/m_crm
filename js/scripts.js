@@ -898,26 +898,10 @@ var _valida = {
                     $(this).parent().addClass("obrigatorio");
                 }
                 if ($(this).hasClass("data")) {
-                    //type="tel"  placeholder="999-999-9999"  pattern="\d{3}[-\s]\d{3}[-\s]\d{4}.*?$"
-                    $(this).attr({
-                        "pattern": "\d{2}[/\s]\d{2}[/\s]\d{4}.*?$",
-                        "type": "date",
-                        "title": "Informe uma Data",
-                        "size": "12",
-                        "maxlength": "10"
-                    });
-                }
-                if ($(this).hasClass("mes_data")) {
-                    $(this).attr("title", "Informe uma Mês e Ano").attr("size", "9").attr("maxlength", "7");
+                    $(this).attr("type", "date");
                 }
                 if ($(this).hasClass("email")) {
                     $(this).attr("title", "Informe um E-mail.").attr("maxlength", "255").css('width', '90%');
-                }
-                if ($(this).hasClass("hora")) {
-                    $(this).attr("title", "Informe uma Hora.").attr("size", "7").attr("maxlength", "5");
-                }
-                if ($(this).hasClass("hora_segundos")) {
-                    $(this).attr("title", "Informe uma Hora.").attr("size", "10").attr("maxlength", "8");
                 }
                 if ($(this).hasClass("cpf")) {
                     $(this).attr("title", "Informe um CPF.").attr("size", "16").attr("maxlength", "14");
@@ -926,25 +910,13 @@ var _valida = {
                     $(this).attr("title", "Informe um CNPJ.").attr("size", "20").attr("maxlength", "18");
                 }
                 if ($(this).hasClass("numero")) {
-                    $(this).attr("title", "Informe o número.");
-                    $(this).attr("size", (!$(this).attr('size') || $(this).attr('size') == '' ? options.numero.size : $(this).attr('size')));
-                    $(this).attr("maxlength", (!$(this).attr('maxlength') || $(this).attr('maxlength') == '' ? options.numero.maxlength : $(this).attr('maxlength')));
+                    $(this).attr("type", "number");
+                    $(this).attr("pattern", "[0-9]*");
                 }
                 if ($(this).hasClass("alfa")) {
-                    $(this).attr("title", options.alfa.titulo);
-                    $(this).attr("size", options.alfa.size);
-                    $(this).attr("maxlength", options.alfa.maxlength);
+                    $(this).attr("type", "text");
+                    $(this).attr("pattern", "[a-zA-Z]*");
                 }
-                if ($(this).hasClass("peso")) {
-                    $(this).attr("title", "Informe o peso.");
-                }
-                if ($(this).hasClass("altura_largura")) {
-                    $(this).attr("title", "Informe a (altura/largura).");
-                }
-                if ($(this).hasClass("moeda")) {
-                    $(this).attr("title", "Informe valor Monetário.");
-                }
-
             });
             $.each($(this).find(":input").not(':button'), function() {
                 var concat = "";

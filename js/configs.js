@@ -42,7 +42,7 @@ $(document).bind("mobileinit", function() {
         touchOverflowEnabled: false,
         defaultPageTransition: 'none',
         defaultDialogTransition: 'none',
-        loadingMessage: 'Carregando...',
+        loadingMessage: 'Carregando...'
         //buttonMarkup: {hoverDelay: 0}
     });
 });

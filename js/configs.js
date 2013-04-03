@@ -37,9 +37,12 @@ if (window.openDatabase) {
 }
 
 $(document).bind("mobileinit", function() {
-    $.extend(  $.mobile , {
-    ajaxEnabled : false,
-    pushStateEnabled : false,
-    defaultPageTransition : 'none'
-  });
+    $.extend($.mobile, {
+        autoInitializePage: false,
+        touchOverflowEnabled: false,
+        defaultPageTransition: 'none',
+        defaultDialogTransition: 'none',
+        loadingMessage: 'Carregando...',
+        buttonMarkup: {hoverDelay: 0}
+    });
 });

@@ -38,11 +38,11 @@ if (window.openDatabase) {
 
 $(document).bind("mobileinit", function() {
     $.extend($.mobile, {
-        autoInitializePage: false,
+        ajaxEnabled: false,
         touchOverflowEnabled: false,
         defaultPageTransition: 'none',
         defaultDialogTransition: 'none',
-        loadingMessage: 'Carregando...'
-        //buttonMarkup: {hoverDelay: 0}
+        loadingMessage: 'Carregando...',
+        buttonMarkup: {hoverDelay: 0}
     });
 });

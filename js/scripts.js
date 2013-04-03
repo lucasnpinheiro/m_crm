@@ -1,5 +1,6 @@
 var _constant = {
     version: "1.00.00",
+    maxPaginacao: 10,
     titles: {
         aviso: 'CRM Mobile informa:',
         erro: 'CRM Mobile informa erros localizados:'

@@ -1,3 +1,14 @@
+var _constant = {
+    version: "1.00.00",
+    titles: {
+        aviso: 'CRM Mobile informa:',
+        erro: 'CRM Mobile informa erros localizados:'
+    },
+    redirect: function(url) {
+        window.location.href = url;
+    }
+};
+
 /*!
  * jQuery Cookie Plugin v1.3.1
  * https://github.com/carhartl/jquery-cookie
@@ -558,6 +569,7 @@ function date(format, timestamp) {
         return this;
     };
 })(jQuery);
+
 function jAviso(msg) {
     $.pnotify({
         title: 'CRM Mobile Informa:',
@@ -598,192 +610,6 @@ var _valida = {
     clear: function(string) {
         var exp = /\.|\_|\:|\;|\ |\-/g;
         return string.toString().replace(exp, "");
-    },
-    // Valida Registro
-    registro: function(registro) {
-        registro = String(_valida.clear(registro));
-        if (registro.length == 11) {
-            var dc1 = registro.substr(9, 1);
-            var dc2 = registro.substr(10, 1);
-            registro = registro.split("");
-            for (var i = 0; i < registro.length; i++) {
-                registro[i] = parseInt(registro[i], 10);
-            }
-            var soma1 = ((registro[0] * 2) + (registro[1] * 3) + (registro[2] * 4) + (registro[3] * 5) + (registro[4] * 6) + (registro[5] * 7) + (registro[6] * 8) + (registro[7] * 9) + (registro[8] * 10));
-            var mod_soma1 = soma1 % 11;
-            if (mod_soma1 > 1) {
-                mod_soma1 = 11 - mod_soma1;
-            } else {
-                mod_soma1 = 0;
-            }
-            var soma2 = ((mod_soma1 * 2 + registro[0] * 3 + registro[1] * 4 + registro[2] * 5 + registro[3] * 6 + registro[4] * 7 + registro[5] * 8 + registro[6] * 9 + registro[7] * 10 + registro[8] * 11));
-            var mod_soma2 = soma2 % 11;
-            if (mod_soma2 > 1) {
-                mod_soma2 = 11 - mod_soma2;
-            } else {
-                mod_soma2 = 0;
-            }
-            if ((mod_soma1 == dc1) && (mod_soma2 == dc2)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    },
-    // Valida Data
-    data: function(data) {
-        var date = data;
-        var array_data = new Array;
-        var ExpReg = new RegExp("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}");
-        array_data = date.split("/");
-        var erro = false;
-        if (date.search(ExpReg) == -1) {
-            erro = true;
-        } else {
-            if (((array_data[1] == 4) || (array_data[1] == 6) || (array_data[1] == 9) || (array_data[1] == 11)) && (array_data[0] > 30)) {
-                erro = true;
-            } else {
-                if (array_data[1] == 2) {
-                    if ((array_data[0] > 28) && ((array_data[2] % 4) != 0)) {
-                        erro = true;
-                    }
-                    if ((array_data[0] > 29) && ((array_data[2] % 4) == 0)) {
-                        erro = true;
-                    }
-                }
-            }
-        }
-        return erro;
-    },
-    // Valida Hora
-    hora: function(h) {
-        var retorno = false;
-        if (h.length > 4) {
-            var novaHora = h.split(":");
-            var hora = (novaHora[0] == undefined || novaHora[0] == "" ? null : novaHora[0]);
-            var minuto = (novaHora[1] == undefined || novaHora[1] == "" ? null : novaHora[1]);
-            var segundo = (novaHora[2] == undefined || novaHora[2] == "" ? null : novaHora[2]);
-            if (hora != null) {
-                if ((hora >= 0) && (hora <= 23)) {
-                    if (minuto != null) {
-                        if ((minuto >= 0) && (minuto <= 59)) {
-                            if (segundo != null) {
-                                if ((segundo >= 0) && (segundo <= 59)) {
-                                    retorno = false;
-                                } else {
-                                    retorno = true;
-                                }
-                            } else {
-                                retorno = false;
-                            }
-                        } else {
-                            retorno = true;
-                        }
-                    }
-                } else {
-                    retorno = true;
-                }
-            } else {
-                retorno = true;
-            }
-        } else {
-            retorno = true;
-        }
-        return retorno;
-    },
-    // Valida Mac
-    mac_address: function(string) {
-        var erros = false;
-        string = string.split(":");
-        var padrao = /[0-9]|[a-fA-F]{2}/;
-        if (string.length != 6) {
-            erros = true;
-        } else {
-            $.each(string, function(a, b) {
-                if (b.search(padrao) < 0) {
-                    erros = true;
-                }
-            });
-        }
-        return erros;
-    },
-    // Valida Hora Maior
-    hora_maior: function(hora_inicio, hora_fim) {
-        var hie = hora_inicio.split(":");
-        var hieh = hie[0];
-        var hiem = hie[1];
-        var hies = (hie[2] == undefined ? 0 : hie[2]);
-        var hi = new Date(1970, 1, 1, hieh, hiem, hies);
-        var hfe = hora_fim.split(":");
-        var hfeh = hfe[0];
-        var hfem = hfe[1];
-        var hfes = (hfe[2] == undefined ? 0 : hfe[2]);
-        var hf = new Date(1970, 1, 1, hfeh, hfem, hfes);
-        if (hi.getTime() > hf.getTime()) {
-            return false;
-        } else {
-            return true;
-        }
-    },
-    // Valida Data Hora Maior
-    data_hora_maior: function(data_hora_inicio, data_hora_fim) {
-        var di = data_hora_inicio.split(" ");
-        var df = data_hora_fim.split(" ");
-        if (valida_data_maior(di[0], df[0]) == true) {
-            if (valida_hora_maior(di[1], df[1]) == true) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    },
-    // Valida Data Maior
-    data_maior: function(data_inicio, data_fim) {
-        var hie = data_inicio.split("/");
-        var hieh = hie[0];
-        var hiem = hie[1];
-        var hies = (hie[2] == undefined ? 0 : hie[2]);
-        var hi = new Date(hies, hiem, hieh);
-        var hfe = data_fim.split("/");
-        var hfeh = hfe[0];
-        var hfem = hfe[1];
-        var hfes = (hfe[2] == undefined ? 0 : hfe[2]);
-        var hf = new Date(hfes, hfem, hfeh);
-        if (hi.getTime() > hf.getTime()) {
-            return false;
-        } else {
-            return true;
-        }
-    },
-    // Valida Data Hora
-    data_hora: function(data_hora) {
-        if (data_hora != '') {
-            var explode = data_hora.split(" ");
-            var data = (explode[0] == undefined || explode[0] == "" ? null : explode[0]);
-            var hora = (explode[1] == undefined || explode[1] == "" ? null : explode[1]);
-            var retorno = false;
-            if (data != null) {
-                if (_valida.data($.trim(data)) == true) {
-                    retorno = true;
-                }
-            } else {
-                retorno = true;
-            }
-            if (hora != null) {
-                if (_valida.hora($.trim(hora)) == true) {
-                    retorno = true;
-                }
-            } else {
-                retorno = true;
-            }
-            return retorno;
-        } else {
-            return false;
-        }
     },
     // Valida CPF
     cpf: function(cpf) {
@@ -870,57 +696,24 @@ var _valida = {
         }
     }
 };
+
 (function($) {
     $.fn.extend({
-        form_valida: function(parametros) {
-            var defaults = {
-                id_msg: "#msg"
-            };
-            var options = $.extend(true, defaults, parametros);
+        form_valida: function() {
             var erro = 0;
             var form = this;
             var campos = "";
-            $(".ui-tabs-nav li").css("background", "").removeAttr("title");
-            $(this).find(":input").removeClass('textoErro').removeClass('textoSucesso').removeClass('textoAviso');
+
             $.each($(this).find(":input").not(':button, :disabled'), function() {
                 var name = $(this).attr('id');
                 var msg_error = '';
+
                 if ($(this).hasClass("obrigatorio") && $.trim($(this).val()) == "") {
                     erro++;
                     if (msg_error != '') {
                         msg_error += '<br />';
                     }
                     msg_error += "Campo obrigatório";
-                }
-
-                if ($(this).hasClass("data")) {
-                    if (_valida.data($.trim($(this).val())) == true) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "Data inválida";
-                    }
-                }
-
-                if (($(this).hasClass("hora") || $(this).hasClass("hora_segundos"))) {
-                    if (_valida.hora($.trim($(this).val())) == true) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "Hora inválida";
-                    }
-                }
-
-                if ($(this).hasClass("data_hora")) {
-                    if (_valida.data_hora($.trim($(this).val())) == true) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "Data/Hora inválida";
-                    }
                 }
 
                 if ($(this).hasClass("cpf")) {
@@ -964,26 +757,6 @@ var _valida = {
                     }
                 }
 
-                if ($(this).hasClass("mac")) {
-                    if (_valida.mac_address($.trim($(this).val())) == true) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "MAC inválido";
-                    }
-                }
-
-                if ($(this).hasClass("placa")) {
-                    if ($.trim($(this).val()).length != 8) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "Placa inválida";
-                    }
-                }
-
                 if ($(this).hasClass("email")) {
                     if (_valida.email($.trim($(this).val())) == false) {
                         erro++;
@@ -991,16 +764,6 @@ var _valida = {
                             msg_error += '<br />';
                         }
                         msg_error += "E-mail inválida";
-                    }
-                }
-
-                if ($(this).hasClass("telefone")) {
-                    if ($.trim($(this).val()).length < 14 && $.trim($(this).val()).length > 15) {
-                        erro++;
-                        if (msg_error != '') {
-                            msg_error += '<br />';
-                        }
-                        msg_error += "Formato do telefone inválido";
                     }
                 }
 
@@ -1014,8 +777,7 @@ var _valida = {
             });
             if (erro > 0) {
                 $(form).color_campos_form({
-                    campos: $.parseJSON('{ ' + campos + ' }'),
-                    id_msg: options.id_msg
+                    campos: $.parseJSON('{ ' + campos + ' }')
                 });
                 return false;
             } else {
@@ -1028,43 +790,18 @@ var _valida = {
     $.fn.extend({
         color_campos_form: function(parametros) {
             var defaults = {
-                class_erro: "textoErro",
-                class_sucesso: "textoSucesso",
-                class_aviso: "textoAviso",
-                class_desabilitado: "textoDisabled",
-                class_span_erro: "spanError",
-                msg: "Os campos destacados em vermelho, são de preenchimento obrigatório ou contém erros.",
-                campos: {},
-                id_msg: "#msg"
+                campos: {}
             };
             var options = $.extend(true, defaults, parametros);
-            var obj = $(this);
-            var meuArray = new Array();
-            $('.' + options.class_span_erro).remove();
-            jAviso(options.msg);
-            $(".ui-tabs-nav li").css("background", "").removeAttr("title");
-            $.each(options.campos, function(a, b) {
-                meuArray[a] = b;
-            });
-            $.each(obj.find(":input").not(':button'), function(c, d) {
-                $(d).removeClass(options.class_sucesso).removeClass(options.class_erro).removeClass(options.class_aviso).addClass(options.class_sucesso);
-                if (meuArray[$(d).attr("id")]) {
-                    var b = meuArray[$(d).attr("id")];
-                    $(d).removeClass(options.class_sucesso).removeClass(options.class_erro).removeClass(options.class_aviso).removeAttr("title").addClass(options.class_erro).attr("title", b);
-                    if ($(d).next().is(":button")) {
-                        $(d).next().after('<span class="span_remove_error_' + $(d).attr("id") + ' ' + options.class_span_erro + '">' + b + '</span>');
-                    } else {
-                        $(d).after('<span class="span_remove_error_' + $(d).attr("id") + ' ' + options.class_span_erro + '">' + b + '</span>');
-                    }
+            var msg = '';
 
-                    if ($(".ui-tabs-nav").html() != null) {
-                        if ($(d).hasClass(options.class_erro)) {
-                            var id_tabs = $(d).closest(".ui-tabs-panel").attr("id");
-                            $('.ui-tabs-nav li a[href="#' + id_tabs + '"]').attr("title", "A erro(s) no(s) campo(s) desta aba.").closest("li").css("background", "#F6BEC1");
-                        }
-                    }
+            $.each(options.campos, function(a, b) {
+                if (msg != '') {
+                    msg += '<br />';
                 }
+                msg += b;
             });
+            jAviso(msg);
         }
     });
 })(jQuery);
@@ -1125,6 +862,7 @@ var _valida = {
         });
     });
 })(jQuery);
+
 (function($) {
     $.fn.extend({
         insere_mascara: function(parametros) {
@@ -1164,9 +902,7 @@ var _valida = {
                     $(this).parent().addClass("obrigatorio");
                 }
                 if ($(this).hasClass("data")) {
-                    $(this).mask("?99/99/9999").datepicker({
-                        'minDate': options.date.minDate
-                    }).attr("title", "Informe uma Data").attr("size", "12").attr("maxlength", "10");
+                    $(this).mask("?99/99/9999").attr("title", "Informe uma Data").attr("size", "12").attr("maxlength", "10");
                 }
                 if ($(this).hasClass("mes_data")) {
                     $(this).mask("?99/9999").attr("title", "Informe uma Mês e Ano").attr("size", "9").attr("maxlength", "7");
@@ -1179,17 +915,6 @@ var _valida = {
                 }
                 if ($(this).hasClass("hora_segundos")) {
                     $(this).mask("?99:99:99").attr("title", "Informe uma Hora.").attr("size", "10").attr("maxlength", "8");
-                }
-                if ($(this).hasClass("data_hora")) {
-                    $(this).datetimepicker({
-                        'showSecond': true,
-                        'timeFormat': "hh:mm:ss"
-                    }).mask("?99/99/9999 99:99:99").attr("title", "Informe uma Data/Hora.").attr("size", "22").attr("maxlength", "19");
-                }
-                if ($(this).hasClass("placa")) {
-                    $(this).mask("?aaa-9999").attr("title", "Informe uma Placa.").attr("size", "10").attr("maxlength", "8").css({
-                        'text-transform': "uppercase"
-                    });
                 }
                 if ($(this).hasClass("cpf")) {
                     $(this).mask("?999.999.999-99").attr("title", "Informe um CPF.").attr("size", "16").attr("maxlength", "14");
@@ -1208,11 +933,7 @@ var _valida = {
                         }
                     });
                 }
-                if ($(this).hasClass("mac")) {
-                    $(this).mask("?**:**:**:**:**:**").css({
-                        'text-transform': "uppercase"
-                    }).attr("title", "Informe um MAC.").attr("size", "19").attr("maxlength", "17");
-                }
+
                 if ($(this).hasClass("telefone")) {
                     $(this).mask("?(99) 9999-99999").on("focusout", function(event) {
                         var target, phone, element;
@@ -1229,30 +950,6 @@ var _valida = {
                 }
                 if ($(this).hasClass("cnpj")) {
                     $(this).mask("?99.999.999/9999-99").attr("title", "Informe um CNPJ.").attr("size", "20").attr("maxlength", "18");
-                }
-                if ($(this).hasClass("pis")) {
-                    $(this).mask("?999.99999.99-9");
-                    $(this).attr("title", "Informe um PIS.");
-                    $(this).attr("size", "16");
-                    $(this).attr("maxlength", "14");
-                }
-                if ($(this).hasClass("ctps")) {
-                    $(this).mask("?9999999");
-                    $(this).attr("title", "Informe um CPTS.");
-                    $(this).attr("size", "9");
-                    $(this).attr("maxlength", "7");
-                }
-                if ($(this).hasClass("ctps_serie")) {
-                    $(this).mask("?99999");
-                    $(this).attr("title", "Informe a série.");
-                    $(this).attr("size", "7");
-                    $(this).attr("maxlength", "5");
-                }
-                if ($(this).hasClass("cep")) {
-                    $(this).mask("?99999-999");
-                    $(this).attr("title", "Informe um CEP.");
-                    $(this).attr("size", "11");
-                    $(this).attr("maxlength", "9");
                 }
                 if ($(this).hasClass("numero")) {
                     var qtd = $(this).attr('maxlength');
@@ -1302,13 +999,7 @@ var _valida = {
                     });
                     $(this).attr("title", "Informe valor Monetário.");
                 }
-                if ($(this).hasClass("latitude_longitude")) {
-                    $(this).maskMoney({
-                        allowNegative: true,
-                        precision: 6
-                    });
-                    $(this).attr("title", "Informe valor " + $(this).attr("name") + ".");
-                }
+
             });
             $.each($(this).find(":input").not(':button'), function() {
                 var concat = "";
@@ -1324,6 +1015,7 @@ var _valida = {
         }
     });
 })(jQuery);
+
 String.prototype.replaceAll = function(de, para) {
     var str = this;
     var pos = str.indexOf(de);
@@ -1333,6 +1025,7 @@ String.prototype.replaceAll = function(de, para) {
     }
     return(str);
 };
+
 function md5(str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
@@ -1724,3 +1417,27 @@ function json_encode(mixed_val) {
         return null;
     }
 }
+
+function rtrim(str, charlist) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Erkekjetter
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
+    // +   input by: rem
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: rtrim('    Kevin van Zonneveld    ');
+    // *     returns 1: '    Kevin van Zonneveld'
+    charlist = !charlist ? ' \\s\u00A0' : (charlist + '').replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\\$1');
+    var re = new RegExp('[' + charlist + ']+$', 'g');
+    return (str + '').replace(re, '');
+}
+
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};

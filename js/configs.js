@@ -43,6 +43,6 @@ $(document).bind("mobileinit", function() {
         defaultPageTransition: 'none',
         defaultDialogTransition: 'none',
         loadingMessage: 'Carregando...',
-        buttonMarkup: {hoverDelay: 0}
+        //buttonMarkup: {hoverDelay: 0}
     });
 });

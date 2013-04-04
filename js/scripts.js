@@ -1358,3 +1358,14 @@ String.prototype.format = function() {
     }
     return formatted;
 };
+
+function block(remove) {
+    remove = !remove ? false : true;
+    if (remove == false) {
+        $('body').append("<div class='ui-loader-background'> </div>");
+        $.mobile.showPageLoadingMsg();
+    } else {
+        $('div.ui-loader-background').remove();
+        $.mobile.hidePageLoadingMsg();
+    }
+}

@@ -4,6 +4,7 @@ $(document).on('pageinit', function() {
 });
 
 function sincronizar_produtos_total() {
+    block(false);
     $.ajax({
         url: _situacoes.urls.produtos_total,
         dataType: 'html',
@@ -19,6 +20,7 @@ function sincronizar_produtos_total() {
         },
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+            block(true);
         }
     });
 }
@@ -58,17 +60,20 @@ function sincronizar_produtos_lista() {
                                 $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + i);
                                 if (i == _total_produtos) {
                                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
+                                    block(true);
                                 }
                             },
                             function(tx, result) {
                                 $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
                                 debug('ERROR', result.message);
+                                block(true);
                             });
                 });
             });
         },
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+            block(true);
         }
     });
 }

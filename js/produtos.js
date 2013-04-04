@@ -23,17 +23,21 @@ function _produtos_consultar(query) {
         tx.executeSql(query, [], function(tx, result) {
             debug('SUCESSO', query);
             debug('TOTAL', result.rows.length);
-            for (var i = 0; i < result.rows.length; i++) {
-                var rest = result.rows.item(i);
-                var tr = '<tr>';
-                tr += ' <th><b class="ui-table-cell-label">Produto</b>' + rest.dsc_produto + '</th>';
-                tr += ' <td><b class="ui-table-cell-label">Cód.</b>' + rest.cod_produto + '</td>';
-                tr += ' <td><b class="ui-table-cell-label">Marca</b>Não informado</td>';
-                tr += ' <td><b class="ui-table-cell-label">Estoque</b><span class="situacoes_protutos_1"><span class="situacoes_protutos_1">' + rest.estoque + '</span></span></td>';
-                tr += ' <td><b class="ui-table-cell-label">Valores</b><span class="situacoes_produtos_3">R$ ' + number_format(rest.valor, 2, ',', '.') + ' </span> | <span class="situacoes_produtos_4">R$ ' + number_format(rest.desconto_maximo, 2, ',', '.') + '</span></td>';
-                tr += ' <td><b class="ui-table-cell-label">Atualização</b>' + date('d/m/Y H:i:s', new Date(rest.data_hora_atualizacao)) + '</td>';
-                tr += '</tr>';
-                $('#table-produtos tbody').append(tr);
+            if (result.rows.length == 0) {
+                jAviso('Nenum registro localizado.');
+            } else {
+                for (var i = 0; i < result.rows.length; i++) {
+                    var rest = result.rows.item(i);
+                    var tr = '<tr>';
+                    tr += ' <th><b class="ui-table-cell-label">Produto</b>' + rest.dsc_produto + '</th>';
+                    tr += ' <td><b class="ui-table-cell-label">Cód.</b>' + rest.cod_produto + '</td>';
+                    tr += ' <td><b class="ui-table-cell-label">Marca</b>Não informado</td>';
+                    tr += ' <td><b class="ui-table-cell-label">Estoque</b><span class="situacoes_protutos_1"><span class="situacoes_protutos_1">' + rest.estoque + '</span></span></td>';
+                    tr += ' <td><b class="ui-table-cell-label">Valores</b><span class="situacoes_produtos_3">R$ ' + number_format(rest.valor, 2, ',', '.') + ' </span> | <span class="situacoes_produtos_4">R$ ' + number_format(rest.desconto_maximo, 2, ',', '.') + '</span></td>';
+                    tr += ' <td><b class="ui-table-cell-label">Atualização</b>' + date('d/m/Y H:i:s', new Date(rest.data_hora_atualizacao)) + '</td>';
+                    tr += '</tr>';
+                    $('#table-produtos tbody').append(tr);
+                }
             }
         }, function(tx, result) {
             debug('ERROR', result.message);

@@ -1,46 +1,39 @@
 // verifica suporte ao banco de dados.
 if (db != null) {
 
-    if (_session.get('reset_banco') == 'N') {
-        verificar_tabelas();
-        _session.set('reset_banco', 'S');
-    } else {
-        _session.set('reset_banco', 'N');
-    }
-
     function verificar_tabelas() {
         // tabelas
         var tabelas = [
-            /*{
-             tbl : "DROP TABLE IF EXISTS logs"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS equipamento"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS empresas"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS equipamentos"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS clientes"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS produtos"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS usuarios"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS pedidos"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS pedidos_itens"
-             },
-             {
-             tbl : "DROP TABLE IF EXISTS sqlite_sequence"
-             },*/
+            {
+                tbl: "DROP TABLE IF EXISTS logs"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS equipamento"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS empresas"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS equipamentos"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS clientes"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS produtos"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS usuarios"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS pedidos"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS pedidos_itens"
+            },
+            {
+                tbl: "DROP TABLE IF EXISTS sqlite_sequence"
+            },
             {
                 tbl: "CREATE TABLE IF NOT EXISTS empresas ( id_empresas INTEGER PRIMARY KEY AUTOINCREMENT, dsc_hash VARCHAR(10) , cpf_cnpj VARCHAR(14) , dsc_empresa VARCHAR(50) , data_hora_cadastro DATETIME  , data_hora_exclusao DATETIME  )"
             },

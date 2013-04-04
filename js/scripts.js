@@ -575,7 +575,7 @@ function jAviso(msg) {
     $.pnotify({
         title: 'CRM Mobile Informa:',
         text: msg,
-        hide: false,
+        hide: true,
         sticker: false,
         history: false,
         icon: false,
@@ -587,7 +587,7 @@ function jSucesso(msg) {
     $.pnotify({
         title: 'CRM Mobile Informa:',
         text: msg,
-        hide: false,
+        hide: true,
         sticker: false,
         history: false,
         icon: false,

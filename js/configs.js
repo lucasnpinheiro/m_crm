@@ -1,4 +1,8 @@
 var _situacoes = {
+    urls: {
+        produtos_total: 'http://s2i.com.br:8084/WsCrmMobile/produtos/registros/',
+        produtos_lista: 'http://s2i.com.br:8084/WsCrmMobile/produtos'
+    },
     clientes: {
         1: 'Ativo',
         2: 'Inativo',

@@ -47,7 +47,7 @@ if (db != null) {
                 tbl: "CREATE TABLE IF NOT EXISTS clientes ( id_clientes INTEGER PRIMARY KEY AUTOINCREMENT, id_empresas INTEGER , cod_cliente VARCHAR(50) , dsc_cliente VARCHAR(45) , data_hora_atualizacao DATETIME  , data_hora_exclusao DATETIME )"
             },
             {
-                tbl: "CREATE TABLE IF NOT EXISTS produtos ( id_produtos INTEGER PRIMARY KEY AUTOINCREMENT, id_empresas INTEGER , cod_produto VARCHAR(50) , dsc_produto VARCHAR(100) , estoque DECIMAL(10,5)  DEFAULT 0 , desconto_maximo DECIMAL(10,2)  DEFAULT 0 , data_hora_atualizacao DATETIME  , data_hora_exclusao DATETIME )"
+                tbl: "CREATE TABLE IF NOT EXISTS produtos ( id_produtos INTEGER PRIMARY KEY AUTOINCREMENT, id_empresas INTEGER , cod_produto VARCHAR(50) , dsc_produto VARCHAR(100) , estoque DECIMAL(10,5)  DEFAULT 0 , desconto_maximo DECIMAL(10,2)  DEFAULT 0 , data_hora_atualizacao DATETIME  , valor DECIMAL(10,2) )"
             },
             {
                 tbl: "CREATE TABLE IF NOT EXISTS usuarios ( id_usuarios INTEGER PRIMARY KEY AUTOINCREMENT, id_empresas INTEGER , cod_usuario VARCHAR(50) , dsc_usuario VARCHAR(50)  , usuario VARCHAR(50) , nome VARCHAR(50) , senha VARCHAR(32) , data_hora_atualizacao DATETIME  , data_hora_exclusao DATETIME )"

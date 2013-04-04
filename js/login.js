@@ -1,12 +1,6 @@
 $(document).on('pageinit', function() {
 
-    db.transaction(function(tx) {
-        tx.executeSql('SELECT name FROM sqlite_master WHERE type="table" AND name="usuarios";', [], function(tx, result) {
-            if (result.rows.length == 0) {
-                verificar_tabelas();
-            }
-        });
-    });
+    verificar_tabelas();
 
     $('#bt_logar').click(function(e) {
         e.preventDefault();

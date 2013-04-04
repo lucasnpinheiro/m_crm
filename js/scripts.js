@@ -1374,3 +1374,16 @@ function block(remove) {
         $('.ui-loader').css('display', 'none');
     }
 }
+
+function TimeCounter() {
+    this.startDate = null;
+    this.ellapsedTime = null;
+
+    this.start = function() {
+        this.startDate = new Date();
+    }
+
+    this.stop = function() {
+        return (new Date() - this.startDate) / 1000;
+    }
+}

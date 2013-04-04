@@ -25,8 +25,8 @@ var _situacoes = {
         5: 'Aberto'
     },
     produtos: {
-        A: '<span class="situacoes_protutos_1">{0}</span>',
-        B: '<span class="situacoes_protutos_2">{0}</span>',
+        1: '<span class="situacoes_protutos_1">{0}</span>',
+        2: '<span class="situacoes_protutos_2">{0}</span>',
         min: '<span class="situacoes_protutos_3">{0}</span>',
         max: '<span class="situacoes_protutos_4">{0}</span>',
     }

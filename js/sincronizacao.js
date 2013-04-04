@@ -1,9 +1,11 @@
 var _total_produtos = 0;
+var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
     sincronizar_produtos_total();
 });
 
 function sincronizar_produtos_total() {
+    tcount.start();
     block(false);
     $.ajax({
         url: _situacoes.urls.produtos_total,
@@ -21,6 +23,7 @@ function sincronizar_produtos_total() {
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
             block(true);
+            jAviso('Tempo decorrido para a atualização ' + tcount.stop() + ' Segundos.');
         }
     });
 }
@@ -61,12 +64,14 @@ function sincronizar_produtos_lista() {
                                 if (i == _total_produtos) {
                                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
                                     block(true);
+                                    jAviso('Tempo decorrido para a atualização ' + tcount.stop() + ' Segundos.');
                                 }
                             },
                             function(tx, result) {
                                 $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
                                 debug('ERROR', result.message);
                                 block(true);
+                                jAviso('Tempo decorrido para a atualização ' + tcount.stop() + ' Segundos.');
                             });
                 });
             });
@@ -74,6 +79,7 @@ function sincronizar_produtos_lista() {
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
             block(true);
+            jAviso('Tempo decorrido para a atualização ' + tcount.stop() + ' Segundos.');
         }
     });
 }

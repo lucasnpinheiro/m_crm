@@ -1,7 +1,4 @@
 $(document).on('pageinit', function() {
-
-    verificar_tabelas();
-
     $('#bt_logar').click(function(e) {
         e.preventDefault();
         if ($(this).closest('form').form_valida() == true) {

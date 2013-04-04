@@ -10,4 +10,12 @@ $(document).on('pageinit', function() {
         _session.remove('id_usuario');
         _constant.redirect('index.html');
     });
+    $('.limpar_banco_dados').click(function(e) {
+        e.preventDefault();
+        verificar_tabelas();
+        _session.remove('reset_banco');
+        _session.remove('usuario');
+        _session.remove('id_usuario');
+        _constant.redirect('index.html');
+    });
 });

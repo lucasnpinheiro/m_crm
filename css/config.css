@@ -103,9 +103,8 @@ div.hasDatepicker{ display: block; padding: 0; overflow: visible;  margin: 8px 0
     padding: 0;
     margin: 0;
     background: rgba(0, 0, 0, 0.3);
-    display:none;
     position: fixed;
-    z-index:100;
+    z-index:9999998;
 }
 
 .ui-loading .ui-loader-background {

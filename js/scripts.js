@@ -1360,12 +1360,17 @@ String.prototype.format = function() {
 };
 
 function block(remove) {
-    remove = !remove ? false : true;
-    if (remove == false) {
-        $('body').append("<div class='ui-loader-background'> </div>");
-        $.mobile.showPageLoadingMsg();
-    } else {
+    $('body').append("<div class='ui-loader-background'> </div>");
+    $.mobile.loading('show', {
+        text: 'Aguarde sincronizando a base de dados.',
+        textVisible: true,
+        theme: 'e',
+        textonly: false
+    });
+    $('.ui-loader').css('display', 'block');
+    if (remove == true) {
         $('div.ui-loader-background').remove();
-        $.mobile.hidePageLoadingMsg();
+        $.mobile.loading('hide');
+        $('.ui-loader').css('display', 'none');
     }
 }

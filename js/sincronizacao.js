@@ -54,7 +54,7 @@ function sincronizar_produtos_lista() {
             });
 
             $.each(result, function(a, b) {
-                var query = 'INSERT INTO produtos (id_produtos, cod_produto, dsc_produto, desconto_maximo, data_hora_atualizacao, estoque, valor, id_empresas) VALUES ("' + b.id_produtos + '","' + b.cod_produto + '","' + b.dsc_produto + '","' + b.desconto_maximo + '","' + date('Y-M-d') + '","' + b.estoque + '",' + b.valor + ',"' + b.id_empresas + '");';
+                var query = 'INSERT INTO produtos (id_produtos, cod_produto, dsc_produto, desconto_maximo, data_hora_atualizacao, estoque, valor, id_empresas) VALUES ("' + b.id_produtos + '","' + b.cod_produto + '","' + b.dsc_produto + '","' + b.desconto_maximo + '","' + date('Y-m-d H:i:s') + '","' + b.estoque + '",' + b.valor + ',"' + b.id_empresas + '");';
                 debug('QUERY', query);
                 db.transaction(function(tx) {
                     tx.executeSql(query, [],

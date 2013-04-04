@@ -1,3 +1,4 @@
+var _total_produtos = 0;
 $(document).on('pageinit', function() {
     sincronizar_produtos_total();
 });
@@ -12,7 +13,9 @@ function sincronizar_produtos_total() {
         },
         success: function(xhr) {
             $('#tr_produtos td:eq(2)').html('<b class="ui-table-cell-label">Total registro</b> ' + xhr);
-            sincronizar_produtos_lista()
+            $('#tr_produtos td:eq(0)').html('<b class="ui-table-cell-label">Atualização</b> ' + date('d/m/Y H:i:s'));
+            _total_produtos = xhr;
+            sincronizar_produtos_lista();
         },
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
@@ -31,7 +34,6 @@ function sincronizar_produtos_lista() {
         },
         success: function(result) {
             var i = 0;
-            var erro = 0;
 
             var query = 'DELETE FROM produtos;';
             debug('QUERY', query);
@@ -54,20 +56,16 @@ function sincronizar_produtos_lista() {
                             function(tx, result) {
                                 i++;
                                 $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + i);
-                                debug('SUCCESS', result.message);
+                                if (i == _total_produtos) {
+                                    $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
+                                }
                             },
                             function(tx, result) {
-                                erro++;
+                                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
                                 debug('ERROR', result.message);
                             });
                 });
             });
-
-            if (erro == 0) {
-                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
-            } else {
-                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
-            }
         },
         error: function() {
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');

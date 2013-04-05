@@ -1,6 +1,10 @@
 var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
-    document.addEventListener("deviceready", onDeviceReady, false);
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    } else {
+        onDeviceReady();
+    }
     _sincronicacao.produtos.total();
 });
 
@@ -112,9 +116,6 @@ _sincronicacao = {
     }
 };
 
-
-
-
 // Cordova is loaded and it is now safe to make calls Cordova methods
 //
 function onDeviceReady() {
@@ -122,37 +123,43 @@ function onDeviceReady() {
 }
 
 function checkConnection() {
-    var networkState = navigator.connection.type;
+    if (!navigator.connection) {
+        _sincronicacao.produtos.qtdPaginacao = 500;
+        _sincronicacao.conexao.status = true;
+        _sincronicacao.conexao.nome = 'Conexão desconhecida';
+    } else {
+        var networkState = navigator.connection.type;
 
-    var states = {};
-    states[Connection.UNKNOWN] = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI] = 'WiFi connection';
-    states[Connection.CELL_2G] = 'Cell 2G connection';
-    states[Connection.CELL_3G] = 'Cell 3G connection';
-    states[Connection.CELL_4G] = 'Cell 4G connection';
-    states[Connection.NONE] = 'No network connection';
+        var states = {};
+        states[Connection.UNKNOWN] = 'Conexão desconhecida';
+        states[Connection.ETHERNET] = 'Conexão Ethernet';
+        states[Connection.WIFI] = 'Conexão Wi-Fi';
+        states[Connection.CELL_2G] = 'Conexão 2G celular';
+        states[Connection.CELL_3G] = 'Conexão 3G celular';
+        states[Connection.CELL_4G] = 'Conexão 4G celular';
+        states[Connection.NONE] = 'Sem ligação à rede';
 
-    _sincronicacao.conexao.nome = states[networkState];
+        _sincronicacao.conexao.nome = states[networkState];
 
-    switch (states[networkState])
-    {
-        case 'Unknown connection':
-        case 'No network connection':
-            _sincronicacao.produtos.qtdPaginacao = 0;
-            _sincronicacao.conexao.status = false;
-            break;
-        case 'Cell 3G connection':
-            _sincronicacao.produtos.qtdPaginacao = 40;
-            _sincronicacao.conexao.status = true;
-            break;
-        case 'Cell 4G connection':
-        case 'WiFi connection':
-            _sincronicacao.produtos.qtdPaginacao = 100;
-            _sincronicacao.conexao.status = true;
-            break;
-        default:
-            _sincronicacao.produtos.qtdPaginacao = 25;
-            _sincronicacao.conexao.status = true;
+        switch (states[networkState])
+        {
+            case 'Conexão desconhecida':
+            case 'Sem ligação à rede':
+                _sincronicacao.produtos.qtdPaginacao = 0;
+                _sincronicacao.conexao.status = false;
+                break;
+            case 'Conexão 3G celular':
+                _sincronicacao.produtos.qtdPaginacao = 40;
+                _sincronicacao.conexao.status = true;
+                break;
+            case 'Conexão 4G celular':
+            case 'Conexão Wi-Fi':
+                _sincronicacao.produtos.qtdPaginacao = 100;
+                _sincronicacao.conexao.status = true;
+                break;
+            default:
+                _sincronicacao.produtos.qtdPaginacao = 25;
+                _sincronicacao.conexao.status = true;
+        }
     }
 }

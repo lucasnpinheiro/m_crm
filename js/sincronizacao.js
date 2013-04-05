@@ -78,15 +78,11 @@ _sincronicacao = {
                         _sincronicacao.produtos.lista();
                     },
                     error: function() {
-                        $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
-                        $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
-                        _sincronicacao.fim();
+                        _sincronicacao.produtos.error();
                     }
                 });
             } else {
-                _sincronicacao.fim();
-                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
-                $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
+                _sincronicacao.produtos.error();
                 jAviso('Sem conexão "' + _sincronicacao.conexao.nome + '"');
             }
         },
@@ -116,17 +112,19 @@ _sincronicacao = {
                         }
                     },
                     error: function() {
-                        $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
-                        $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
-                        _sincronicacao.fim();
+                        _sincronicacao.produtos.error();
                     }
                 });
             } else {
-                _sincronicacao.fim();
-                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
-                $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
+                _sincronicacao.produtos.error();
                 jAviso('Sem conexão "' + _sincronicacao.conexao.nome + '"');
             }
+        },
+        error: function() {
+            _sincronicacao.fim();
+            $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+            $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
+            $('a.reload').button('refresh');
         }
     },
     fim: function() {

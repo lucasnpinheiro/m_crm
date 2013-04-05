@@ -139,7 +139,7 @@ function onDeviceReady() {
 
 function checkConnection() {
     if (!navigator.connection) {
-        _sincronicacao.produtos.qtdPaginacao = 500;
+        _sincronicacao.produtos.qtdPaginacao = 50;
         _sincronicacao.conexao.status = true;
         _sincronicacao.conexao.nome = 'Conexão desconhecida';
     } else {

@@ -582,6 +582,7 @@ function jAviso(msg) {
         icon: false,
         styling: 'jqueryui'
     });
+    debug('AVISO',msg);
 }
 
 function jSucesso(msg) {
@@ -594,6 +595,7 @@ function jSucesso(msg) {
         icon: false,
         styling: 'jqueryui'
     });
+    debug('SUCESSO',msg);
 }
 
 function debug(tipo, msg) {

@@ -1,10 +1,10 @@
 var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+    //document.addEventListener("deviceready", onDeviceReady, false);
     _sincronicacao.produtos.total();
 
-    $('a.reload').on('click', function() {
+    /*$('a.reload').on('click', function() {
         var acao = $(this).closest('tr').attr('id');
 
         switch (acao) {
@@ -18,13 +18,13 @@ $(document).on('pageinit', function() {
             case 'tr_pedidos':
                 break;
         }
-    });
+    });*/
 });
 
 _sincronicacao = {
     conexao: {
         nome: '',
-        status: false
+        status: true
     },
     produtos: {
         qtdPaginacao: 50,
@@ -124,7 +124,7 @@ _sincronicacao = {
             _sincronicacao.fim();
             $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
             $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
-            $('a.reload').button('refresh');
+            //$('a.reload').button('refresh');
         }
     },
     fim: function() {
@@ -132,7 +132,7 @@ _sincronicacao = {
         jAviso('Tempo decorrido para a atualização da tabela de produtos ' + tcount.stop() + ' segundos.');
     }
 };
-
+/*
 function onDeviceReady() {
     checkConnection();
 }
@@ -177,4 +177,4 @@ function checkConnection() {
                 _sincronicacao.conexao.status = true;
         }
     }
-}
+}*/

@@ -110,3 +110,7 @@ div.hasDatepicker{ display: block; padding: 0; overflow: visible;  margin: 8px 0
 .ui-loading .ui-loader-background {
     display:block;
 }
+
+.ui-datebox-container .ui-header .ui-title{
+    text-align: center;
+}

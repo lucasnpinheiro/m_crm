@@ -1,7 +1,6 @@
 var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
-    tcount.start();
-    block(false);
+    document.addEventListener("deviceready", onDeviceReady, false);
     _sincronicacao.produtos.total();
 });
 
@@ -10,7 +9,7 @@ _sincronicacao = {
         qtdPaginacao: 50,
         qtdAtual: 0,
         qtdMax: 0,
-        sequencia: 1,
+        sequencia: 0,
         insert: function(result) {
             var i = 0;
             var total = result.length;
@@ -21,7 +20,7 @@ _sincronicacao = {
                     tx.executeSql(query, [],
                             function() {
                                 i++;
-                                _sincronicacao.produtos.sequencia += 1;
+                                _sincronicacao.produtos.sequencia++;
                                 $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + _sincronicacao.produtos.sequencia);
                                 if (i == total) {
                                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
@@ -46,14 +45,15 @@ _sincronicacao = {
                 dataType: 'html',
                 type: 'GET',
                 beforeSend: function() {
+                    tcount.start();
+                    block(false);
                     $('#tr_produtos td:eq(2)').html('<b class="ui-table-cell-label">Total registro</b> 0');
                 },
                 success: function(result) {
                     $('#tr_produtos td:eq(2)').html('<b class="ui-table-cell-label">Total registro</b> ' + result);
                     $('#tr_produtos td:eq(0)').html('<b class="ui-table-cell-label">Atualização</b> ' + date('d/m/Y H:i:s'));
-                    _sincronicacao.produtos.lista();
-                    _sincronicacao.produtos.sequencia = 1;
                     _sincronicacao.produtos.qtdMax = result;
+                    _sincronicacao.produtos.lista();
                 },
                 error: function() {
                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
@@ -67,7 +67,7 @@ _sincronicacao = {
                 dataType: 'json',
                 type: 'GET',
                 data: {
-                    inicio: _sincronicacao.produtos.sequencia,
+                    inicio: _sincronicacao.produtos.sequencia + 1,
                     qtde: _sincronicacao.produtos.qtdPaginacao
                 },
                 beforeSend: function() {
@@ -76,10 +76,12 @@ _sincronicacao = {
                 },
                 success: function(result) {
                     var total = result.length;
-                    _sincronicacao.produtos.qtdAtual += total;
-                    if (total != 0) {
+                    if (total > 0) {
+                        _sincronicacao.produtos.qtdAtual += total;
                         _sincronicacao.produtos.insert(result);
                     } else {
+                        _sincronicacao.produtos.sequencia++;
+                        $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + _sincronicacao.produtos.sequencia);
                         _sincronicacao.fim();
                     }
                 },
@@ -92,6 +94,45 @@ _sincronicacao = {
     },
     fim: function() {
         block(true);
-        jAviso('Tempo decorrido para a atualização ' + tcount.stop() + ' Segundos.');
+        jAviso('Tempo decorrido para a atualização da tabela de produtos ' + tcount.stop() + ' segundos.');
     }
 };
+
+
+
+
+// Cordova is loaded and it is now safe to make calls Cordova methods
+//
+function onDeviceReady() {
+    checkConnection();
+}
+
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN] = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.NONE] = 'No network connection';
+
+    switch (states[networkState])
+    {
+        case 'Unknown connection':
+        case 'No network connection':
+            _sincronicacao.produtos.qtdPaginacao = 0;
+            break;
+        case 'Cell 3G connection':
+            _sincronicacao.produtos.qtdPaginacao = 40;
+            break;
+        case 'Cell 4G connection':
+        case 'WiFi connection':
+            _sincronicacao.produtos.qtdPaginacao = 100;
+            break;
+        default:
+            _sincronicacao.produtos.qtdPaginacao = 25;
+    }
+}

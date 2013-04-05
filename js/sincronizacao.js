@@ -14,7 +14,7 @@ _sincronicacao = {
             var i = 0;
             var total = result.length;
             $.each(result, function(a, b) {
-                var query = 'INSERT INTO produtos (id_produtos, cod_produto, dsc_produto, desconto_maximo, data_hora_atualizacao, estoque, valor, id_empresas) VALUES ("' + b.id_produtos + '","' + b.cod_produto + '","' + b.dsc_produto + '","' + b.desconto_maximo + '","' + date('Y-m-d H:i:s') + '","' + b.estoque + '",' + b.valor + ',"' + b.id_empresas + '");';
+                var query = 'INSERT OR REPLACE INTO produtos (id_produtos, cod_produto, dsc_produto, desconto_maximo, data_hora_atualizacao, estoque, valor, id_empresas) VALUES ("' + b.id_produtos + '","' + b.cod_produto + '","' + b.dsc_produto + '","' + b.desconto_maximo + '","' + date('Y-m-d H:i:s') + '","' + b.estoque + '",' + b.valor + ',"' + b.id_empresas + '");';
                 debug('QUERY', query);
                 db.transaction(function(tx) {
                     tx.executeSql(query, [],
@@ -70,27 +70,10 @@ _sincronicacao = {
                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_4">Sincronizando</span>');
                 },
                 success: function(result) {
-                    var i = 0;
                     var total = result.length;
                     _sincronicacao.produtos.qtdAtual += total;
                     if (total != 0) {
-                        if (_sincronicacao.produtos.sequencia == 0) {
-                            var query = 'DELETE FROM produtos;';
-                            debug('QUERY', query);
-                            db.transaction(function(tx) {
-                                tx.executeSql(query, [],
-                                        function() {
-                                            $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + i);
-                                            debug('SUCCESS', 'Insert OK');
-                                            _sincronicacao.produtos.insert(result);
-                                        },
-                                        function(tx, r) {
-                                            debug('ERROR', r.message);
-                                        });
-                            });
-                        } else {
                             _sincronicacao.produtos.insert(result);
-                        }
                     }
                 },
                 error: function() {

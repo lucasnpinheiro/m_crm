@@ -7,9 +7,10 @@ $(document).on('pageinit', function() {
 
 _sincronicacao = {
     produtos: {
+        qtdPaginacao: 50,
         qtdAtual: 0,
         qtdMax: 0,
-        sequencia: 0,
+        sequencia: 1,
         insert: function(result) {
             var i = 0;
             var total = result.length;
@@ -20,10 +21,10 @@ _sincronicacao = {
                     tx.executeSql(query, [],
                             function() {
                                 i++;
-                                $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + i);
+                                _sincronicacao.produtos.sequencia += 1;
+                                $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + _sincronicacao.produtos.sequencia);
                                 if (i == total) {
                                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_1">Sincronizado</span>');
-                                    _sincronicacao.produtos.sequencia += 1;
                                     if (_sincronicacao.produtos.qtdAtual < _sincronicacao.produtos.qtdMax) {
                                         _sincronicacao.produtos.lista();
                                     } else {
@@ -51,7 +52,7 @@ _sincronicacao = {
                     $('#tr_produtos td:eq(2)').html('<b class="ui-table-cell-label">Total registro</b> ' + result);
                     $('#tr_produtos td:eq(0)').html('<b class="ui-table-cell-label">Atualização</b> ' + date('d/m/Y H:i:s'));
                     _sincronicacao.produtos.lista();
-                    _sincronicacao.produtos.sequencia = 0;
+                    _sincronicacao.produtos.sequencia = 1;
                     _sincronicacao.produtos.qtdMax = result;
                 },
                 error: function() {
@@ -65,15 +66,21 @@ _sincronicacao = {
                 url: _situacoes.urls.produtos_lista,
                 dataType: 'json',
                 type: 'GET',
+                data: {
+                    inicio: _sincronicacao.produtos.sequencia,
+                    qtde: _sincronicacao.produtos.qtdPaginacao
+                },
                 beforeSend: function() {
-                    $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> 0');
+                    $('#tr_produtos td:eq(1)').html('<b class="ui-table-cell-label">Total sincronizado</b> ' + _sincronicacao.produtos.qtdAtual);
                     $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_4">Sincronizando</span>');
                 },
                 success: function(result) {
                     var total = result.length;
                     _sincronicacao.produtos.qtdAtual += total;
                     if (total != 0) {
-                            _sincronicacao.produtos.insert(result);
+                        _sincronicacao.produtos.insert(result);
+                    } else {
+                        _sincronicacao.fim();
                     }
                 },
                 error: function() {

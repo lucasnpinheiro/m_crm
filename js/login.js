@@ -23,6 +23,7 @@ $(document).on('pageinit', function() {
                     }
                 }, function(tx, result) {
                     debug('ERROR', result.message);
+                    verificar_tabelas();
                 });
             });
 
@@ -40,6 +41,7 @@ $(document).on('pageinit', function() {
                         }
                     }, function(tx, result) {
                         debug('ERROR', result.message);
+                        verificar_tabelas();
                     });
                 });
             }

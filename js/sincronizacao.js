@@ -4,7 +4,7 @@ $(document).on('pageinit', function() {
     document.addEventListener("deviceready", onDeviceReady, false);
     _sincronicacao.produtos.total();
 
-    /*$('a.reload').on('click', function() {
+    $('a.reload').on('click', function() {
         var acao = $(this).closest('tr').attr('id');
 
         switch (acao) {
@@ -18,7 +18,7 @@ $(document).on('pageinit', function() {
             case 'tr_pedidos':
                 break;
         }
-    });*/
+    });
 });
 
 _sincronicacao = {
@@ -164,16 +164,16 @@ function checkConnection() {
                 _sincronicacao.conexao.status = false;
                 break;
             case 'Conexão 3G celular':
-                _sincronicacao.produtos.qtdPaginacao = 40;
+                _sincronicacao.produtos.qtdPaginacao = 35;
                 _sincronicacao.conexao.status = true;
                 break;
             case 'Conexão 4G celular':
             case 'Conexão Wi-Fi':
-                _sincronicacao.produtos.qtdPaginacao = 100;
+                _sincronicacao.produtos.qtdPaginacao = 50;
                 _sincronicacao.conexao.status = true;
                 break;
             default:
-                _sincronicacao.produtos.qtdPaginacao = 25;
+                _sincronicacao.produtos.qtdPaginacao = 15;
                 _sincronicacao.conexao.status = true;
         }
     }

@@ -6,6 +6,22 @@ $(document).on('pageinit', function() {
         onDeviceReady();
     }
     _sincronicacao.produtos.total();
+
+    $('a.reload').on('click', function() {
+        var acao = $(this).closest('tr').attr('id');
+
+        switch (acao) {
+            case 'tr_produtos':
+                _sincronicacao.produtos.lista();
+                break;
+            case 'tr_clientes':
+                break;
+            case 'tr_usuarios':
+                break;
+            case 'tr_pedidos':
+                break;
+        }
+    });
 });
 
 _sincronicacao = {
@@ -66,11 +82,14 @@ _sincronicacao = {
                     },
                     error: function() {
                         $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+                        $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
                         _sincronicacao.fim();
                     }
                 });
             } else {
                 _sincronicacao.fim();
+                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+                $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
                 jAviso('Sem conexão "' + _sincronicacao.conexao.nome + '"');
             }
         },
@@ -101,11 +120,14 @@ _sincronicacao = {
                     },
                     error: function() {
                         $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+                        $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
                         _sincronicacao.fim();
                     }
                 });
             } else {
                 _sincronicacao.fim();
+                $('#tr_produtos td:eq(3)').html('<b class="ui-table-cell-label">Situação</b> <span class="situacoes_sincronizacao_2">Error</span>');
+                $('#tr_produtos td:eq(4)').html('<b class="ui-table-cell-label">Ação</b> <a href="#" class="reload" data-role="button" data-icon="refresh" data-iconpos="notext" data-theme="c" data-inline="true">Recarregar</a>');
                 jAviso('Sem conexão "' + _sincronicacao.conexao.nome + '"');
             }
         }

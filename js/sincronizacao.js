@@ -1,7 +1,7 @@
 var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
 
-    //document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
     _sincronicacao.produtos.total();
 
     /*$('a.reload').on('click', function() {
@@ -132,7 +132,7 @@ _sincronicacao = {
         jAviso('Tempo decorrido para a atualização da tabela de produtos ' + tcount.stop() + ' segundos.');
     }
 };
-/*
+
 function onDeviceReady() {
     checkConnection();
 }
@@ -177,4 +177,4 @@ function checkConnection() {
                 _sincronicacao.conexao.status = true;
         }
     }
-}*/
+}

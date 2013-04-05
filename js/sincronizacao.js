@@ -1,10 +1,7 @@
 var tcount = new TimeCounter();
 $(document).on('pageinit', function() {
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    } else {
-        onDeviceReady();
-    }
+    onDeviceReady();
+    document.addEventListener("deviceready", onDeviceReady, false);
     _sincronicacao.produtos.total();
 
     $('a.reload').on('click', function() {

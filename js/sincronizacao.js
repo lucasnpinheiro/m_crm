@@ -69,6 +69,7 @@ _sincronicacao = {
                     beforeSend: function() {
                         tcount.start();
                         block(false);
+                        $('.conteudo ul').append('<li data-role="list-divider">' + _sincronicacao.conexao.nome + '</li>');
                         $('#tr_produtos td:eq(2)').html('<b class="ui-table-cell-label">Total registro</b> 0');
                     },
                     success: function(result) {
@@ -138,7 +139,7 @@ function onDeviceReady() {
 }
 
 function checkConnection() {
-    if (!navigator.connection) {
+    if (navigator.connection == undefined) {
         _sincronicacao.produtos.qtdPaginacao = 50;
         _sincronicacao.conexao.status = true;
         _sincronicacao.conexao.nome = 'Conexão desconhecida';
